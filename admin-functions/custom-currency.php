@@ -2,7 +2,15 @@
 /**
  * Adds a new Currency symbol and name to Give payment options
  * @since 1.0
- * NOTE: This adds the currency as an option in your currency settings and will output in your front-end forms. But it is up to your Payment Gateway to handle that currency correctly. This means that even though the form will show your currency, and you'll see the reports with this currency, your Payment processor may reflect something different.
+ * NOTE: Give supports all currencies that PayPal Standard offers
+ * See here: https://developer.paypal.com/docs/classic/api/country_codes/
+ * 
+ * This adds the currency as an option in your currency settings 
+ * and will output in your front-end forms. But it is up to your 
+ * Payment Gateway to handle that currency correctly. 
+ * This means that even though the form will show your currency, and 
+ * you'll see the reports with this currency, your Payment processor 
+ * may reflect something different.
  */
 
 /*
