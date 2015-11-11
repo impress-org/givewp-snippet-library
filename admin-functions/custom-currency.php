@@ -31,9 +31,9 @@ function add_costarican_currency($currencies) {
  * for the form output
  */
 
-add_filter('give_currency_symbol', 'add_colon_symbol', 10,3);
+add_filter('give_currency_symbol', 'add_colon_symbol', 10,2);
 
-function add_colon_symbol($currency = '', $symbol) {
+function add_colon_symbol($symbol, $currency) {
 
     switch ( $currency ) :
         case "CRC" :
