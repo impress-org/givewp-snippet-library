@@ -1,7 +1,13 @@
 <?php
-
-add_filter('give_payment_gateways', 'my_custom_gateway_labels');
-
+/**
+ * Customize the Gateways Labels
+ *
+ * @description: This function uses the `give_payment_gateways` library and adjusts the label that appears for the donor on the frontend donation forms. This will affect ALL donation forms.
+ *
+ * @param $gateways
+ *
+ * @return mixed
+ */
 function my_custom_gateway_labels($gateways) {
 	$gateways['offline'] = array(
 		'admin_label'    => 'Offline Donations',
@@ -14,3 +20,5 @@ function my_custom_gateway_labels($gateways) {
 
     return $gateways;
 }
+
+add_filter('give_payment_gateways', 'my_custom_gateway_labels');
