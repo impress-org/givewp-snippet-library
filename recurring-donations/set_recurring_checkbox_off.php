@@ -1,3 +1,4 @@
+<?php
 /*
  * Set the Donor's Choice checkbox to "off" by default
  *
