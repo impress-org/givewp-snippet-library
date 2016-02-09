@@ -1,0 +1,19 @@
+/**
+ *  Horizontally Center the Give Form
+ *
+ */
+ 
+.give-form-wrap {
+    text-align: center;
+}
+
+.give-donation-amount {
+	margin: 0 auto;
+    display: inline-block;
+}
+
+/*If the form has multi-level buttons*/
+#give-donation-level-button-wrap>li {
+    float: none;
+    display: inline-block;
+}
