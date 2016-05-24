@@ -22,7 +22,7 @@ function my_custom_give_email_content( $email_body, $payment_id, $payment_data )
 		$email_body = '<p>Hi {name},</p>';
 		$email_body .= '<p>Thank you for your donation to . ' . get_the_title( $form_id ) . '. This is my custom content!</p>';
 		$email_body .= '<p>We can add anything here we like...</p>';
-		$email_body .= '<p>Even out custom email tags: {receipt_link}</p>';
+		$email_body .= '<p>Even our custom email tags: {receipt_link}</p>';
 
 		//Make sure we return the new $email_body;
 		return $email_body;
