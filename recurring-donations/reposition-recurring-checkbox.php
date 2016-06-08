@@ -4,7 +4,7 @@
  *
  * Important - rename this function so it's unique to avoid conflicts.
  *
- * @description: This function unhooks Give's checkbox output action and then sets it to a desired location within the donation form using a separate action.
+ * @description: This function unhooks Give's checkbox output action and then sets it to a desired location (see https://givewp.com/documentation/developers/actions-explanation-and-usage/ for all available actions) within the donation form using a separate action.
  */
 function my_customize_recurring_checkbox_location(){
 
