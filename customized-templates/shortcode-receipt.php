@@ -23,7 +23,6 @@ $status   = give_get_payment_status( $payment, true );
 ?>
 
 <?php do_action( 'give_payment_receipt_before_table', $payment, $give_receipt_args ); ?>
-<h3>TEST!</h3>
 	<table id="give_donation_receipt" class="give-table">
 		<thead>
 		<?php do_action( 'give_payment_receipt_before', $payment, $give_receipt_args ); ?>
