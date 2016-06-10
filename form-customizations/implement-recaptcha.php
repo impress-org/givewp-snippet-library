@@ -14,9 +14,18 @@
  */
 function give_validate_recaptcha( $valid_data, $data ) {
 
-	//User must have validated the reCAPTCHA to proceed with donation
-	if ( ! isset( $data['g-recaptcha-response'] ) || empty( $data['g-recaptcha-response'] ) ) {
-		give_set_error( 'g-recaptcha-response', __( 'Please verify that you are not a robot.', 'give' ) );
+	$recaptcha_url        = 'https://www.google.com/recaptcha/api/siteverify';
+
+	$recaptcha_secret_key = '6LeLtBsTAAAAALuZI_oEk7iSKO4yeIOSsLVNBgvJ'; // <----- UPDATE WITH YOUR SITE KEY
+
+	$recaptcha_response = wp_remote_post( $recaptcha_url . "?secret=" . $recaptcha_secret_key . "&response=" . $data['g-recaptcha-response'] . "&remoteip=" . $_SERVER['REMOTE_ADDR'] );
+	$recaptcha_data     = wp_remote_retrieve_body( $recaptcha_response );
+
+	if ( isset( $recaptcha_data->success ) AND $recaptcha_data->success == true ) {
+		//User must have validated the reCAPTCHA to proceed with donation
+		if ( ! isset( $data['g-recaptcha-response'] ) || empty( $data['g-recaptcha-response'] ) ) {
+			give_set_error( 'g-recaptcha-response', __( 'Please verify that you are not a robot.', 'give' ) );
+		}
 	}
 }
 
@@ -46,15 +55,15 @@ function print_my_inline_script() {
 
 	//Uncomment if statement to control output
 //	if ( is_singular( 'give_forms' ) ) {
-		?>
-		<script type="text/javascript">
-			jQuery(document).on('give_gateway_loaded', function () {
-				grecaptcha.render('give-recaptcha-element', {
-					'sitekey': 'YOUR SITE KEY HERE!' //ADD YOU OWN Google API Sitekey here
-				});
+	?>
+	<script type="text/javascript">
+		jQuery(document).on('give_gateway_loaded', function () {
+			grecaptcha.render('give-recaptcha-element', {
+				'sitekey': 'YOUR SITE KEY HERE!' //ADD YOU OWN Google API Sitekey here
 			});
-		</script>
-		<?php
+		});
+	</script>
+	<?php
 //	}
 }
 
