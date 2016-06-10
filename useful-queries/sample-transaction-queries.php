@@ -5,9 +5,17 @@
  *  This snippet is a page template with 3 Sample Queries
  *  Each query displays subtly different information about
  *  your transactions.
- *
+ *  
  *  Please be sensitive to whether your donors want any of
  *  this information public at all.
+ *  
+ *  IMPORTANT: This snippet, unlike others you might find in 
+ *  our snippet library, does not go in functions.php or a 
+ *  must-use plugin. Save this entire file as something like
+ *  'page_list-donations.php' and place it in your theme's folder.
+ *  then create a new page, and select "List Donations" from the
+ *  dropdown menu. Publish the page and view it 
+ *  on the front end of your site.
  */
 
 get_header();
