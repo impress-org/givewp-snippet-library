@@ -40,7 +40,7 @@ get_header();
 					//Output the goal (if enabled)
 					$id          = get_the_ID();
 					$goal_option = get_post_meta( $id, '_give_goal_option', true );
-					if ( $goal_option == 'on' ) {
+					if ( $goal_option == 'yes' ) {
 						$shortcode = '[give_goal id="' . $id . '"]';
 						echo do_shortcode( $shortcode );
 					} ?>
