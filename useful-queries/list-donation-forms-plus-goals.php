@@ -2,7 +2,16 @@
 /**
  *  Template Name: Donation Forms & Goals
  *
- *  This snippet is a page template with an example query that gets the 10 latest donation forms and displays their goal
+ *  This snippet is a page template with an example query that gets 
+ *  the 10 latest donation forms and displays their goal
+ * 
+ *  IMPORTANT: This snippet, unlike others you might find in our snippet library
+ *  does not go in functions.php or a must-use plugin. Paste the entire contents
+ *  of this file to a new file named archive-give_forms.php and place it in 
+ *  the root of your active theme's folder. To view it on your site, naviate to 
+ *  /donations (assuming you haven't changed the slug or disabled the form archives 
+ *  in Donations --> Settings --> Display )
+ * 
  */
 
 get_header();
