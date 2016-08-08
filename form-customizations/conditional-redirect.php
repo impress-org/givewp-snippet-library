@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php 
 /**
  * Redirect to Custom Page on Successful Donation
@@ -17,8 +16,6 @@ function my_custom_give_redirects( $success_page ) {
 
 }
 
-=======
-<?php 
 /**
  * Redirect to Custom Page on Successful Donation
  *
@@ -36,5 +33,4 @@ function my_custom_give_redirects( $success_page ) {
 
 }
 
->>>>>>> 237a24920d7846afa13f147f67344a2efae88921
 add_filter( 'give_get_success_page_uri', 'my_custom_give_redirects', 10, 1 );
