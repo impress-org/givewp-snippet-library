@@ -18,9 +18,7 @@ function my_custom_give_redirects( $success_page ) {
 
     if ( $form_id == 7 ) {
         $success_page = esc_url( get_permalink( 20 ) );
-    }
-    
-    esleif ( $form_id == 230 ) {
+    } elseif ( $form_id == 230 ) {
         $success_page = esc_url( 'https://example.com' );
     }
 
