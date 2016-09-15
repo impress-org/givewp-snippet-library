@@ -65,4 +65,4 @@ function my_custom_gateway_labels($gateways) {
     return $gateways;
 }
 
-add_filter('give_payment_gateways', 'my_custom_gateway_labels');
+add_filter('give_payment_gateways', 'my_custom_gateway_labels', 100 );
