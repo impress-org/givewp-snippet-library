@@ -1,6 +1,7 @@
 <?php
 /**
-  *  Shortcode to list recent donors  
+  *  Shortcode to list recent donors
+  *  Originally contributed by [@jasontucker](https://github.com/jasontucker)
   *
   */
  
