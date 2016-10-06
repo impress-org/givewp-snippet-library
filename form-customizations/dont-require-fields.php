@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Don't required certain fields.
+ * Don't require certain fields.
  *
- * Removes field requirements by unsetting them to the array passed.
+ * Removes field requirements by unsetting them to the array passed. 
+ * In this sample, the "State/Province" field is the one being targeted.
+ * Find a list of required standard fields here: https://github.com/WordImpress/Give/blob/0907fe1a00419b68b793534b515f67d6f6401296/includes/process-purchase.php#L361
  *
  * @param $required_fields
  * @param $form_id
