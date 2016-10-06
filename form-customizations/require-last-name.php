@@ -1,15 +1,16 @@
 <?php
 
 /**
- *  Require Last Name Snippet.
+ * Require Last Name Snippet.
  *
- *  Adds asterisk and error validation to the last name field of all Give forms.
+ * Adds asterisk and error validation to the last name field of all Give forms.
  *
+ * @param $required_fields
  * @param $form_id
  *
- * @return array
+ * @return mixed
  */
-function give_require_last_name( $form_id ) {
+function give_require_last_name( $required_fields, $form_id ) {
 
 	$required_fields['give_last'] = array(
 		'error_id'      => 'invalid_last_name',
@@ -19,4 +20,4 @@ function give_require_last_name( $form_id ) {
 	return $required_fields;
 }
 
-add_filter( 'give_purchase_form_required_fields', 'give_require_last_name' );
+add_filter( 'give_purchase_form_required_fields', 'give_require_last_name', 10, 2 );
