@@ -2,7 +2,7 @@
 /**
  * Customize Give's Email Content Per Donation Form
  *
- * @description: Use this snippet to update the donation email's main content
+ * Use this snippet to update the donation email's main content.
  *
  * @param $email_body
  * @param $payment_id
