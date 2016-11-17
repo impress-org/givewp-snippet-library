@@ -21,4 +21,4 @@ function give_dont_require_fields( $required_fields, $form_id ) {
 	return $required_fields;
 }
 
-add_filter( 'give_purchase_form_required_fields', 'give_dont_require_fields', 10, 2 );
+add_filter( 'give_donation_form_required_fields', 'give_dont_require_fields', 10, 2 );

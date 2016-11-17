@@ -86,4 +86,4 @@ function give_myprefix_custom_form_fields( $form_id ) {
 	<?php
 }
 
-add_action( 'give_purchase_form_before_submit', 'give_myprefix_custom_form_fields', 10, 1 );
+add_action( 'give_donation_form_before_submit', 'give_myprefix_custom_form_fields', 10, 1 );
