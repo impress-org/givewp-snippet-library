@@ -17,17 +17,18 @@ function give_validate_recaptcha( $valid_data, $data ) {
 
 	$recaptcha_url        = 'https://www.google.com/recaptcha/api/siteverify';
 
-	$recaptcha_secret_key = 'MY SITE KEY HERE'; // <----- UPDATE WITH YOUR SITE KEY
+	$recaptcha_secret_key = 'MY SITE KEY HERE'; // <----- UPDATE WITH YOUR SECRET KEY
 
 	$recaptcha_response = wp_remote_post( $recaptcha_url . "?secret=" . $recaptcha_secret_key . "&response=" . $data['g-recaptcha-response'] . "&remoteip=" . $_SERVER['REMOTE_ADDR'] );
 	$recaptcha_data     = wp_remote_retrieve_body( $recaptcha_response );
 
-	if ( isset( $recaptcha_data->success ) && $recaptcha_data->success == true ) {
+	if ( ! isset( $recaptcha_data->success ) && ! $recaptcha_data->success == true ) {
 		//User must have validated the reCAPTCHA to proceed with donation
 		if ( ! isset( $data['g-recaptcha-response'] ) || empty( $data['g-recaptcha-response'] ) ) {
 			give_set_error( 'g-recaptcha-response', __( 'Please verify that you are not a robot.', 'give' ) );
 		}
 	}
+	return $valid_data;
 }
 
 add_action( 'give_checkout_error_checks', 'give_validate_recaptcha', 10, 2 );
