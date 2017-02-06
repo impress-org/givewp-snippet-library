@@ -17,7 +17,7 @@ function give_validate_recaptcha( $valid_data, $data ) {
 
 	$recaptcha_url        = 'https://www.google.com/recaptcha/api/siteverify';
 
-	$recaptcha_secret_key = 'MY SITE KEY HERE'; // <----- UPDATE WITH YOUR SECRET KEY
+	$recaptcha_secret_key = 'MY SECRET KEY HERE'; // <----- UPDATE WITH YOUR SECRET KEY
 
 	$recaptcha_response = wp_remote_post( $recaptcha_url . "?secret=" . $recaptcha_secret_key . "&response=" . $data['g-recaptcha-response'] . "&remoteip=" . $_SERVER['REMOTE_ADDR'] );
 	$recaptcha_data     = wp_remote_retrieve_body( $recaptcha_response );
