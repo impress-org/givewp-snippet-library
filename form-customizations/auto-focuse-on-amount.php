@@ -6,11 +6,11 @@
  * cursor on the Custom Amount field on page load
  */
 
-function give_focus_custom_amount() { ?>
+function my_give_focus_custom_amount() { ?>
     <script>
         jQuery("#give-amount").focus();
     </script>
 
 <?php }
 
-add_action( 'give_after_single_form', 'give_focus_custom_amount' );
+add_action( 'give_after_single_form', 'my_give_focus_custom_amount' );
