@@ -2,7 +2,7 @@
 /**
  * PayPal Add Address Fields
  *
- * @description Add the Give address fieldset to PayPal Standard
+ * Add the Give address fieldset to PayPal Standard.
  *
  * @access private
  * @since  1.0
