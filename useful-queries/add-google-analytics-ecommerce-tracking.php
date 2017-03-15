@@ -10,7 +10,7 @@ function my_give_google_analytics_event( $payment, $give_receipt_args ) {
 
 	if ( $give_receipt_args['payment_id'] ) {
 		// Use a meta value so we only send the beacon once.
-		if ( get_post_meta( $payment->ID, 'give_ga_beacon_sent', true ) ) {
+		if ( get_post_meta( $payment->ID, '_give_ga_beacon_sent', true ) ) {
 			return;
 		}
 
@@ -32,7 +32,7 @@ function my_give_google_analytics_event( $payment, $give_receipt_args ) {
 		</script>
 		<?php
 
-		update_post_meta( $payment->ID, 'give_ga_beacon_sent', true );
+		update_post_meta( $payment->ID, '_give_ga_beacon_sent', true );
 
 	}
 
