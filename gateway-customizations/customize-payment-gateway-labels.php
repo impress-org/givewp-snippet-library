@@ -31,6 +31,12 @@ function my_custom_gateway_labels($gateways) {
 		'admin_label'    => 'Stripe',
 		'checkout_label' => __( 'Credit Card (Stripe)', 'give' )
 	);
+
+	// add the following 4 lines to change the label for Stripe's ability to do ACH bank account transfers via Plaid
+	$gateways['stripe_ach'] = array(
+		'admin_label'    => 'Stripe (ACH via Plaid)',
+		'checkout_label' => __( 'Donate from a bank account', 'give' )
+	);
 	
 	// add the following 4 lines to change the label for Braintree
 	$gateways['braintree'] = array(
