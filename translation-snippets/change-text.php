@@ -2,32 +2,43 @@
 /**
  * A local translation snippet. Change 'YOUR TEXT HERE' to your desired text.
  *
- * @param $translations
+ * @param $translation
  * @param $text
  * @param $domain
  *
  * @return string
  */
-function my_give_text_switcher( $translations, $text, $domain ) {
+function my_give_text_switcher( $translation, $text, $domain ) {
+	if ( 'give' === $domain ) {
+		switch ( $translation ) {
+			/*
+			 * Changes the "Donations" text in multiple places.
+			 */
+			case 'Donations' :
+				$translation = __( 'YOUR TEXT HERE', 'give' );
+				break;
+		}
+	} elseif ( 'give-recurring' === $domain ) {
+		switch ( $translation ) {
+			/*
+			 * Changes the "Make this Donation [monthly/weekly/daily]" text for
+			 * a donor's choice recurring checkbox.
+			 */
+			case 'Make this Donation' :
+				$translation = __( 'YOUR TEXT HERE', 'give' );
+				break;
 
-	// changes the "Donations" text in multiple places
-	if ( $domain == 'give' && $text == 'Donations' ) {
-		return __( 'YOUR TEXT HERE', 'give' );
+			/*
+			 * Changes the "[Make this Donation] Weekly" text for a donor's
+			 * choice recurring checkbox.
+			 */
+			case 'Weekly' :
+				$translation = __( 'YOUR TEXT HERE', 'give' );
+				break;
+		}
 	}
 
-	// changes the "Make this Donation [monthly/weekly/daily]"
-	// text for a donor's choice recurring checkbox
-	if ( $domain == 'give-recurring' && $translations == 'Make this Donation' ) {
-		return __( 'YOUR TEXT HERE', 'give-recurring' );
-	}
-
-	// changes the "[Make this Donation] Weekly"
-	// text for a donor's choice recurring checkbox
-	if ( $domain == 'give-recurring' && $translations == 'Weekly' ) {
-		return __( 'YOUR TEXT HERE', 'give-recurring' );
-	}
-
-	return $translations;
+	return $translation;
 }
 
 add_filter( 'gettext', 'my_give_text_switcher', 10, 3 );
