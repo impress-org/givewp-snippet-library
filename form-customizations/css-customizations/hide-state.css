@@ -1,0 +1,5 @@
+/* Be sure to make the field unrequired before hiding it: https://github.com/WordImpress/Give-Snippet-Library/blob/master/form-customizations/dont-require-fields.php */
+
+#give-card-state-wrap {
+    display: none !important;
+}
