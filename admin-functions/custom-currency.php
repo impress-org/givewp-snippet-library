@@ -7,6 +7,9 @@
  * NOTE: Give supports all currencies that PayPal Standard offers
  * See here: https://developer.paypal.com/docs/classic/api/country_codes/
  *
+ * Get the Unicode for Currencies here:
+ * https://www.w3schools.com/charsets/ref_utf_currency.asp
+ * 
  * This adds the currency as an option in your currency settings
  * and will output in your front-end forms. But it is up to your
  * Payment Gateway to handle that currency correctly.
