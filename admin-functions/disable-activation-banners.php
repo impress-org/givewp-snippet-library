@@ -2,7 +2,7 @@
 /**
  * Remove plugin activation banners pragmatically
  *
- * @description: This will remove the Give Core welcome and Add-on activation banners which display on the plugin list page. If you are using WP Multisite place this functionality in a plugin that's activated network wide to have it take effect on all sites in the network.
+ * This will remove the Give Core welcome and Add-on activation banners which display on the plugin list page. If you are using WP Multisite place this functionality in a plugin that's activated network wide to have it take effect on all sites in the network.
  *
  */
 function remove_give_activation_stuff() {

@@ -2,7 +2,7 @@
 /**
  * Customize the Default State in the select field
  * 
- * @description: This works when a donor is not logged out, if they are logged in then it will default to their donor profile state
+ * This works when a donor is not logged out, if they are logged in then it will default to their donor profile state
  *
  * @return string
  */

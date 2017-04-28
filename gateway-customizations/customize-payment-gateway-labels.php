@@ -2,7 +2,7 @@
 /**
  * Customize the Gateway Labels
  *
- * @description: This function uses the `give_payment_gateways` library and adjusts 
+ * This function uses the `give_payment_gateways` library and adjusts
  * the label that appears for the donor on the frontend donation forms. This will affect ALL donation forms.
  * The 'admin_label' will affect the backend of the site, while the 'checkout_label' will affect the donor-facing labels
  * 

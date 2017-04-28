@@ -4,7 +4,7 @@
  *
  * Important - rename this function so it's unique to avoid conflicts.
  *
- * @description: This function allows admins to customize the checkbox text that is presented to donors to opt-in to recurring donations
+ * This function allows admins to customize the checkbox text that is presented to donors to opt-in to recurring donations
  *
  * @param $default_text
  * @param $period

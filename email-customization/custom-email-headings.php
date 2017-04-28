@@ -2,7 +2,7 @@
 /**
  * Customize Give's Email Headings
  *
- * @description: Use this snippet to update the donation email's main headings; for instance "New Donation!", etc.
+ * Use this snippet to update the donation email's main headings; for instance "New Donation!", etc.
  *
  * @param $message
  * @param $email_obj

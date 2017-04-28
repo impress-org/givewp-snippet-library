@@ -2,14 +2,14 @@
 /**
  * Disable Decimals for Donations
  *
- * @description: If you don't want any decimals throughout Give use the following function
+ * If you don't want any decimals throughout Give use the following function
  */
 
 
 /**
  * No Decimals
  *
- * @description: Be sure to customize the function name below to prevent conflicts!
+ * Be sure to customize the function name below to prevent conflicts!
  *
  * @return int
  */

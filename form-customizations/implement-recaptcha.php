@@ -52,7 +52,7 @@ add_action('wp_enqueue_scripts', 'give_myprefix_recaptcha_scripts');
 /**
  * Print Necessary Inline JS for ReCAPTCHA
  *
- * @description: This function outputs the appropriate inline js ReCAPTCHA scripts in the footer
+ * This function outputs the appropriate inline js ReCAPTCHA scripts in the footer
  */
 function give_myprefix_print_my_inline_script()
 {
@@ -75,7 +75,7 @@ add_action('wp_footer', 'give_myprefix_print_my_inline_script');
 /**
  * Custom ReCAPTCHA Form Field
  *
- * @description: This function adds the reCAPTCHA field above the "Donation Total" field
+ * This function adds the reCAPTCHA field above the "Donation Total" field
  *
  * Don't forget to update the sitekey!
  *

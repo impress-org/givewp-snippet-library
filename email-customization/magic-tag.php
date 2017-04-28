@@ -3,7 +3,7 @@
 
 /**
  * Adds a Custom "Magic" Tag
- * @description: This function creates a custom Give email template tag
+ * This function creates a custom Give email template tag
  *
  * @param $payment_id
  */
