@@ -39,7 +39,7 @@ function give_mysite_deregister_script() {
 add_action( 'wp_print_scripts', 'give_mysite_dequque_posttype_script', 100 );
 
 function give_mysite_dequque_posttype_script() {
-	if (is_singular('post_type') {
+	if (is_singular('post_type')) {
 		wp_deregister_script( 'give' );
 		wp_dequeue_script( 'give' );
 	}
