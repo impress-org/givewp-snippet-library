@@ -1,6 +1,6 @@
 <?php
 /**
- * Dequeue Give's minified JS script.
+ * Dequeue Give's minified JS scripts.
  *
  * CHANGE THIS FUNCTIONS NAME TO BE UNIQUE!
  *
@@ -9,21 +9,23 @@
  * If SCRIPT_DEBUG is set to true, scripts are enqueued individually.
  */
 
-add_action( 'wp_print_scripts', 'give_mysite_deregister_script', 100 );
 
+/**
+ * Deregister and dequeue scripts.
+ */
 function give_mysite_deregister_script() {
 
 	$deregister = false;
 
-	//Deregister on the homepage.
+	// Deregister on the homepage.
 	if ( is_home() || is_front_page() ) {
 		$deregister = true;
-	} elseif(is_page(12)) {
+	} elseif ( is_page( 12 ) ) {
 		//Deregister for a specific page.
 		$deregister = true;
 	}
 
-	//Check if the conditions are met to register.
+	// Check if the conditions are met to register.
 	if ( $deregister ) {
 		wp_deregister_script( 'give' );
 		wp_dequeue_script( 'give' );
@@ -31,16 +33,19 @@ function give_mysite_deregister_script() {
 
 }
 
-/*
+add_action( 'wp_print_scripts', 'give_mysite_deregister_script', 100 );
+
+
+/**
  * Dequeue just on certain Post Types
- *
  */
-
-add_action( 'wp_print_scripts', 'give_mysite_dequque_posttype_script', 100 );
-
 function give_mysite_dequque_posttype_script() {
-	if (is_singular('post_type')) {
+
+	// Change the conditional here to dequeue where you need.
+	if ( is_singular( 'post_type' ) ) {
 		wp_deregister_script( 'give' );
 		wp_dequeue_script( 'give' );
 	}
 }
+
+add_action( 'wp_print_scripts', 'give_mysite_dequque_posttype_script', 100 );
