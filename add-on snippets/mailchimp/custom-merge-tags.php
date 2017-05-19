@@ -9,7 +9,7 @@ function my_give_mailchimp_merge_vars( $api_args ) {
 
     // Define custom merge tags.
     $custom_merge_vars = array(
-        'MMERGE7' => '1',
+        'CUSTOM' => $_POST['my_ffm_field'], // 'my_ffm_field' is the FFM Meta Key.
     );
 
     // Add custom tags to default merge tags (FNAME, LNAME).
