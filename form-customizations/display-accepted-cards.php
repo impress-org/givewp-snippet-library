@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Adds text or images before the Credit Card fields on the form
  *
  * Note: to style these images, use a CSS snippet like this:
@@ -10,17 +9,16 @@
  *   }
  *
  */
-
 function my_custom_alert_message() {
 
-	$amex =  GIVE_PLUGIN_URL . '/assets/images/amex.png';
-	$diners = GIVE_PLUGIN_URL . '/assets/images/diners-club.png';
-	$discover = GIVE_PLUGIN_URL . '/assets/images/discover.png';
-	$jcb = GIVE_PLUGIN_URL . '/assets/images/jcb.png';
-	$maestro = GIVE_PLUGIN_URL . '/assets/images/maestro.png';
+	$amex       = GIVE_PLUGIN_URL . '/assets/images/amex.png';
+	$diners     = GIVE_PLUGIN_URL . '/assets/images/diners-club.png';
+	$discover   = GIVE_PLUGIN_URL . '/assets/images/discover.png';
+	$jcb        = GIVE_PLUGIN_URL . '/assets/images/jcb.png';
+	$maestro    = GIVE_PLUGIN_URL . '/assets/images/maestro.png';
 	$mastercard = GIVE_PLUGIN_URL . '/assets/images/mastercard.png';
-	$unionpay = GIVE_PLUGIN_URL . '/assets/images/unionpay.png';
-	$visa = GIVE_PLUGIN_URL . '/assets/images/visa.png';
+	$unionpay   = GIVE_PLUGIN_URL . '/assets/images/unionpay.png';
+	$visa       = GIVE_PLUGIN_URL . '/assets/images/visa.png';
 
 	$output = "<div class='my_custom_alert'>";
 
@@ -54,6 +52,4 @@ function my_custom_alert_message() {
 }
 
 
-add_action('give_before_cc_fields', 'my_custom_alert_message');
-
-
+add_action( 'give_before_cc_fields', 'my_custom_alert_message' );
