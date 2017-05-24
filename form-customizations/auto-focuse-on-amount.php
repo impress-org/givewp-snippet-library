@@ -13,4 +13,4 @@ function my_give_focus_custom_amount() { ?>
 
 <?php }
 
-add_action( 'give_after_single_form', 'my_give_focus_custom_amount' );
+add_action( 'give_payment_mode_top', 'my_give_focus_custom_amount' );
