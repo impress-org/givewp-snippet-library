@@ -1,6 +1,6 @@
 <?php
 /**
- * This template is used to display the purchase summary with [give_receipt]
+ * This template is used to display the donation summary with [give_receipt]
  * This template adds the Donor First and Last name to the Confirmation receipt page.
  */
 global $give_receipt_args, $payment;
