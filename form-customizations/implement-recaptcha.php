@@ -10,14 +10,14 @@
  *
  **/
 
-/*
+/**
  * Validate ReCAPTCHA
  *
  * @param $valid_data
  * @param $data
+ *
+ * @return array $valid_data
  */
-
-
 function give_myprefix_validate_recaptcha($valid_data, $data) {
 	$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
 	$recaptcha_secret_key = 'MYSECRETKEY';
@@ -54,8 +54,7 @@ add_action('wp_enqueue_scripts', 'give_myprefix_recaptcha_scripts');
  *
  * This function outputs the appropriate inline js ReCAPTCHA scripts in the footer
  */
-function give_myprefix_print_my_inline_script()
-{
+function give_myprefix_print_my_inline_script() {
 	//Uncomment if statement to control output
 	//if ( is_singular( 'give_forms' ) ) {
 	?>
