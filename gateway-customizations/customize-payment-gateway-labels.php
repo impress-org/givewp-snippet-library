@@ -68,6 +68,12 @@ function my_custom_gateway_labels($gateways) {
 		'checkout_label' => __( 'Credit Card (2Checkout)', 'give' )
 	);
 	
+	// add the following 4 lines to change the label for 2Checkout
+	$gateways['wepay'] = array(
+		'admin_label'    => 'WePay',
+		'checkout_label' => __( 'Credit Card (WePay)', 'give' )
+	);
+	
     return $gateways;
 }
 
