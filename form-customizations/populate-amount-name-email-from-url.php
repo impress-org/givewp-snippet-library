@@ -10,15 +10,17 @@
  * -- Your form must support custom amounts
  * -- This snippet only supports one form per page as-is
  */
-
+// Hooking into the single form view.
 add_action( 'give_after_single_form', 'give_populate_amount_name_email' );
+// If not using the single form view remove the above action and use this action:
+// add_action( 'give_post_form_output', 'give_populate_amount_name_email', 10, 2 );
 
-function give_populate_amount_name_email() { ?>
+function give_populate_amount_name_email() {
+	?>
 
 	<script>
 		// Get variable from query string in URL
-		function getQueryVariable(variable)
-		{
+		function giveGetQueryVariable(variable) {
 			var query = window.location.search.substring(1);
 			var vars = query.split("&");
 			for (var i=0;i<vars.length;i++) {
@@ -30,18 +32,17 @@ function give_populate_amount_name_email() { ?>
 
 		jQuery(document).ready(function( $ ) {
 			// Get the amount from the URL
-			var getamount = getQueryVariable("amount");
+			var getamount = giveGetQueryVariable("amount");
+			var amount = '1.00';
 
 			// Set fallback in case URL variable isn't set
-			if ( getamount != false ) {
+			if ( getamount !== false ) {
 				amount = getamount;
-			} else {
-				amount = '1.00';
 			}
 
-			var firstname = ( getQueryVariable("first") != false ) ? decodeURI(getQueryVariable("first")) : '';
-			var lastname = ( getQueryVariable("last") != false ) ? decodeURI(getQueryVariable("last")) : '';
-			var email = ( getQueryVariable("email") != false ) ? decodeURI(getQueryVariable("email")) : '';
+			var firstname = ( giveGetQueryVariable("first") !== false ) ? decodeURI(giveGetQueryVariable("first")) : '';
+			var lastname = ( giveGetQueryVariable("last") !== false ) ? decodeURI(giveGetQueryVariable("last")) : '';
+			var email = ( giveGetQueryVariable("email") !== false ) ? decodeURI(giveGetQueryVariable("email")) : '';
 
 			// Populate the amount field, then update the total
 			if ( $('#give-amount').length > 0 ) {
@@ -51,17 +52,17 @@ function give_populate_amount_name_email() { ?>
 					.trigger('blur');
 			}
 
-			if ( firstname != false && $('#give-first-name-wrap input.give-input').length > 0 ) {
+			if ( firstname !== false && $('#give-first-name-wrap input.give-input').length > 0 ) {
 				$('#give-first-name-wrap input.give-input')
 					.val(firstname);
 			}
 
-			if ( lastname != false && $('#give-last-name-wrap input.give-input').length > 0 ) {
+			if ( lastname !== false && $('#give-last-name-wrap input.give-input').length > 0 ) {
 				$('#give-last-name-wrap input.give-input')
 					.val(lastname);
 			}
 
-			if ( email != false && $('#give-email-wrap input.give-input').length > 0 ) {
+			if ( email !== false && $('#give-email-wrap input.give-input').length > 0 ) {
 				$('#give-email-wrap input.give-input')
 					.val(email);
 			}
