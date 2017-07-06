@@ -1,7 +1,6 @@
 <?php
 /**
- * A [donor_list] shortcode to list donors with names and amounts
- * with attributes:
+ * A [donor_list] shortcode to list donors with names and amounts with attributes:
  *
  * @number  = the number of donations to list
  * @form_id = whether to limit the donors to a specific form
@@ -17,18 +16,14 @@ function give_donor_list_shortcode_function_example( $atts ) {
 		'heading' => 'We\'d like to thank the following gracious donors:',
 	), $atts, 'donor_list' );
 
-	global $post;
-
-	$pageid = $post->ID;
-
-	$args3 = array(
+	$args = array(
 		'post_type'      => 'give_payment',
 		'posts_per_page' => $atts['number'],
 	);
 
-	$loop3 = new WP_Query( $args3 );
+	$wp_query = new WP_Query( $args );
 
-	if ( $loop3->have_posts() ) : ?>
+	if ( $wp_query->have_posts() ) : ?>
 
 		<h2><?php echo $atts['heading'] ?></h2>
 		<hr />
@@ -39,7 +34,7 @@ function give_donor_list_shortcode_function_example( $atts ) {
 			 *
 			 * Also keep in mind whether or not your donors actually WANT their names posted publicly.
 			 */
-			while ( $loop3->have_posts() ) : $loop3->the_post();
+			while ( $wp_query->have_posts() ) : $wp_query->the_post();
 				$meta = get_post_meta( get_the_ID() );
 				// Transaction have their own metadata; let's get it.
 				$paymentmeta = $meta['_give_payment_meta'];
