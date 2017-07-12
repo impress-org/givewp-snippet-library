@@ -11,7 +11,8 @@ function top_give_forms_function( $atts ) {
 	// Defaults
 	$atts = shortcode_atts( array(
 		'limit' => 3,
-		'order' => 'DESC'
+		'order' => 'DESC',
+        'decimals' => false
 	), $atts, 'top_give_forms' );
 
 	$args = array(
@@ -39,10 +40,13 @@ function top_give_forms_function( $atts ) {
                 <p class="top-form-title"><strong><?php echo get_the_title(); ?></strong>
 				<?php
                     //Output the goal (if enabled)
-                    $id          = get_the_ID();
+                    $id = get_the_ID();
                     $meta = get_post_meta( $id );
                     $earnings = $meta['_give_form_earnings'];
-                    echo '<span>Earnings: ' . give_currency_symbol() . give_format_amount( $earnings[0], false) . '</span>';
+                    $decimals = $atts['decimals'];
+
+                    echo '<span>Earnings: ' . give_currency_symbol() . give_format_amount( $earnings[0], $decimals) . '</span>';
+
                 ?></p>
 
 		<?php endwhile;
