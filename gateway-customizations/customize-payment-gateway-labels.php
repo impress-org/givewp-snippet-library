@@ -29,7 +29,7 @@ function my_custom_gateway_labels( $gateways ) {
 	// add the following 4 lines to change the label for PayPal Payflow.
 	$gateways['paypalpro_payflow'] = array(
 		'admin_label'    => 'PayPal Payflow',
-		'checkout_label' => __( 'PayPal Payflow', 'give' ),
+		'checkout_label' => __( 'Credit Card (PayPal Payflow)', 'give' ),
 	);
 
 	// add the following 4 lines to change the label for Stripe
