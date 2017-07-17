@@ -1,9 +1,9 @@
 <?php
 
 // Check if function does not exists.
-if ( function_exists( 'give_payments_table_show_all_status_callback' ) ) {
+if ( ! function_exists( 'give_payments_table_show_all_status_callback' ) ) {
 	function give_payments_table_show_all_status_callback( $value ) {
-		return $value;
+		return true;
 	}
 }
 /**
