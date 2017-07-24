@@ -13,11 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Must have Give.
-if ( ! class_exists( 'Give' ) ) {
-	return false;
-}
-
 /**
  * Register 'Tributes' section on edit donation form page.
  *
