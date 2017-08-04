@@ -122,12 +122,12 @@ add_action( 'give_add_email_tags', 'giret_give_email_tag' );
  */
 function giret_get_give_email_tag_data( $payment_id, $payment_meta ) {
 
-	$engraving_message = get_post_meta( $payment_id, 'giret_give_is_recurring', true );
+	$is_recurring = get_post_meta( $payment_id, 'giret_give_is_recurring', true );
 
 	$output = __( 'No recurring data found.', 'give' );
 
-	if ( ! empty( $engraving_message ) ) {
-		$output = wpautop( $engraving_message );
+	if ( ! empty( $is_recurring ) ) {
+		$output = wpautop( $is_recurring );
 	}
 
 	return $output;
