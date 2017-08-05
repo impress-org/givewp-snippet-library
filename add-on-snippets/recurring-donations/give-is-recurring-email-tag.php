@@ -40,36 +40,39 @@ add_action( 'give_after_donation_levels', 'giret_give_custom_form_fields', 10, 1
 
 function giret_give_custom_form_fields( $form_id ) {
 	$getformmeta = get_post_meta( $form_id );
-	$recurringsupport = $getformmeta['_give_recurring'][0];
-	$ismulti = $getformmeta['_give_price_option'][0];
+	$recurringsupport = get_post_meta( $form_id , '_give_recurring', true );
+	$ismulti = get_post_meta( $form_id, '_give_price_option', true );
 
-	$isrecurring = ( $recurringsupport == 'yes_donor' || $recurringsupport == 'yes_admin' ? 'Yes' : 'No');
+	if ( !empty($recurringsupport) ) :
 
-	if ( $recurringsupport == 'yes_donor' || $recurringsupport == 'yes_admin' ) :
-		if ( $recurringsupport == 'yes_donor' ) {
-		?>
-		<script type="text/javascript">
-	        jQuery(document).ready(function( $ ) {
-	            $('.give-recurring-donors-choice input').change(function(){
-	                $('#giret_give_is_recurring').val( $(this).is(':checked') ? 'Yes' : 'No' );
-	            })
-	        });
-		</script>
+		if ( $recurringsupport == 'yes_donor' || $recurringsupport == 'yes_admin' ) :
 
-		<?php } if ( $recurringsupport == 'yes_admin' && $ismulti == 'multi') { ?>
-		<script type="text/javascript">
-            jQuery(document).ready(function( $ ) {
+			$isrecurring = ( $recurringsupport == 'yes_donor' || $recurringsupport == 'yes_admin' ? 'Yes' : 'No');
 
-                $('ul.give-donation-levels-wrap li button').click(function(){
-                    $('#giret_give_is_recurring').val( $(this).is('.give-recurring-level') ? 'Yes' : 'No' );
-                })
-            });
-		</script>
-		<?php } ?>
-		<input type="hidden" name="giret_give_is_recurring" id="giret_give_is_recurring" value="<?php echo $isrecurring; ?>"></input>
-	<?php
+			if ( $recurringsupport == 'yes_donor' ) {
+			?>
+			<script type="text/javascript">
+		        jQuery(document).ready(function( $ ) {
+		            $('.give-recurring-donors-choice input').change(function(){
+		                $('#giret_give_is_recurring').val( $(this).is(':checked') ? 'Yes' : 'No' );
+		            })
+		        });
+			</script>
+
+			<?php } if ( $recurringsupport == 'yes_admin' && $ismulti == 'multi') { ?>
+			<script type="text/javascript">
+	            jQuery(document).ready(function( $ ) {
+
+	                $('ul.give-donation-levels-wrap li button').click(function(){
+	                    $('#giret_give_is_recurring').val( $(this).is('.give-recurring-level') ? 'Yes' : 'No' );
+	                })
+	            });
+			</script>
+			<?php } ?>
+			<input type="hidden" name="giret_give_is_recurring" id="giret_give_is_recurring" value="<?php echo $isrecurring; ?>"></input>
+		<?php
+		endif;
 	endif;
-
 }
 
 /**
@@ -122,12 +125,12 @@ add_action( 'give_add_email_tags', 'giret_give_email_tag' );
  */
 function giret_get_give_email_tag_data( $payment_id, $payment_meta ) {
 
-	$is_recurring = get_post_meta( $payment_id, 'giret_give_is_recurring', true );
+	$engraving_message = get_post_meta( $payment_id, 'giret_give_is_recurring', true );
 
 	$output = __( 'No recurring data found.', 'give' );
 
-	if ( ! empty( $is_recurring ) ) {
-		$output = wpautop( $is_recurring );
+	if ( ! empty( $engraving_message ) ) {
+		$output = wpautop( $engraving_message );
 	}
 
 	return $output;
