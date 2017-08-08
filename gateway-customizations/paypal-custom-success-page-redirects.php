@@ -88,6 +88,7 @@ function give_custom_pp_standard_redirect( $paypal_args, $payment_data ) {
 
 }
 
+add_filter( 'give_recurring_paypal_args', 'give_custom_pp_standard_redirect', 10, 2 );
 add_filter( 'give_paypal_redirect_args', 'give_custom_pp_standard_redirect', 10, 2 );
 
 
