@@ -18,13 +18,13 @@
  * @return array $valid_data
  */
 function give_myprefix_validate_recaptcha( $valid_data, $data ) {
-	$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-	$recaptcha_secret_key = 'MYSECRETKEY';
-	$recaptcha_response = wp_remote_post( $recaptcha_url . '?secret=' . $recaptcha_secret_key . '&response=' . $data['g-recaptcha-response'] . '&remoteip=' . $_SERVER['REMOTE_ADDR'] );
-	$recaptcha_data = wp_remote_retrieve_body( $recaptcha_response );
+	$recaptcha_url        = 'https://www.google.com/recaptcha/api/siteverify';
+	$recaptcha_secret_key = 'MYSECRETKEY'; // Replace with your own key here.
+	$recaptcha_response   = wp_remote_post( $recaptcha_url . '?secret=' . $recaptcha_secret_key . '&response=' . $data['g-recaptcha-response'] . '&remoteip=' . $_SERVER['REMOTE_ADDR'] );
+	$recaptcha_data       = wp_remote_retrieve_body( $recaptcha_response );
 
 	if ( ! isset( $recaptcha_data->success ) && ! $recaptcha_data->success == true ) {
-		// User must have validated the reCAPTCHA to proceed with donation
+		// User must have validated the reCAPTCHA to proceed with donation.
 		if ( ! isset( $data['g-recaptcha-response'] ) || empty( $data['g-recaptcha-response'] ) ) {
 			give_set_error( 'g-recaptcha-response', __( 'Please verify that you are not a robot.', 'give' ) );
 		}
@@ -58,11 +58,11 @@ function give_myprefix_print_my_inline_script() {
 	// if ( is_singular( 'give_forms' ) ) {
 	?>
 	<script type="text/javascript">
-		jQuery(document).on('give_gateway_loaded', function () {
-			grecaptcha.render('give-recaptcha-element', {
-				'sitekey': 'MYSITEKEY' //ADD YOU OWN Google API Sitekey here
-			});
-		});
+			jQuery( document ).on( 'give_gateway_loaded', function() {
+				grecaptcha.render( 'give-recaptcha-element', {
+					'sitekey': 'MYSITEKEY' // Add your own Google API sitekey here.
+				} );
+			} );
 	</script>
 	<?php
 	// }
@@ -73,7 +73,7 @@ add_action( 'wp_footer', 'give_myprefix_print_my_inline_script' );
 /**
  * Custom ReCAPTCHA Form Field
  *
- * This function adds the reCAPTCHA field above the "Donation Total" field
+ * This function adds the reCAPTCHA field above the "Donation Total" field.
  *
  * Don't forget to update the sitekey!
  *
@@ -81,10 +81,10 @@ add_action( 'wp_footer', 'give_myprefix_print_my_inline_script' );
  */
 
 function give_myprefix_custom_form_fields( $form_id ) {
-	// Add you own google API Site key
+	// Add you own google API Site key.
 	?>
 	<div id="give-recaptcha-element" class="g-recaptcha" data-sitekey="MYSITEKEY"
-		 style="margin-bottom:1em"></div>
+	     style="margin-bottom:1em"></div>
 	<?php
 }
 
