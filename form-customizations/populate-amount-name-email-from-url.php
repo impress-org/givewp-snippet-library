@@ -10,10 +10,9 @@
  * -- Your form must support custom amounts
  * -- This snippet only supports one form per page as-is
  */
+
 // Hooking into the single form view.
-add_action( 'give_after_single_form', 'give_populate_amount_name_email' );
-// If not using the single form view remove the above action and use this action:
-// add_action( 'give_post_form_output', 'give_populate_amount_name_email', 10, 2 );
+add_action( 'give_post_form_output', 'give_populate_amount_name_email' );
 
 function give_populate_amount_name_email() {
 	?>
