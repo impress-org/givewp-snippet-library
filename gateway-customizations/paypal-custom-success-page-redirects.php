@@ -95,26 +95,27 @@ add_filter( 'give_paypal_redirect_args', 'give_custom_pp_standard_redirect', 10,
 /**
  * Custom PayPal Pro gateway success redirect.
  *
- * @param $redirect
- * @param $gateway
- * @param $query_string
+ * @param $success_page
  *
  * @return string $redirect URL where to redirect donors.
  */
-function give_custom_pp_pro_redirect( $redirect, $gateway, $query_string ) {
+function give_custom_pp_pro_redirect( $success_page ) {
 
-	$form_id           = isset( $_REQUEST['give-form-id'] ) ? $_REQUEST['give-form-id'] : '';
+	$form_id           = isset( $_REQUEST['give-form-id'] ) ? sanitize_text_field($_REQUEST['give-form-id']) : '';
+	$gateway           = isset( $_REQUEST['payment-mode'] ) ? sanitize_text_field($_REQUEST['payment-mode']) : 'manual';
+
 	$form_success_page = give_get_meta( $form_id, 'give_custom_pp_redirects_fields_pro_success_page', true );
 
-	$pp_pro_gateways = array( 'paypalpro_payflow', 'paypalpro', 'paypalpro_rest' );
+	$pp_pro_gateways = array('paypalpro_payflow', 'paypalpro', 'paypalpro_rest');
 
 	// If this donation form has a custom PP Standard success page.
-	if ( ! empty( $form_success_page ) && in_array( $gateway, $pp_pro_gateways ) ) {
-		$redirect = get_permalink( $form_success_page );
+	if ( ! empty( $form_success_page ) && in_array($gateway, $pp_pro_gateways) ) {
+		$success_page = get_permalink( $form_success_page );
 	}
 
-	return $redirect;
+	return $success_page;
 
 }
 
-add_filter( 'give_success_page_redirect', 'give_custom_pp_pro_redirect', 10, 3 );
+add_filter( 'give_success_page_url', 'give_custom_pp_pro_redirect', 10, 1 );
+add_filter( 'give_get_success_page_uri', 'give_custom_pp_pro_redirect', 1, 1 );
