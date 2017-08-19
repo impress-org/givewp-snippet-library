@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Give "Is Recurring" Email Tag
+ * Plugin Name: Give - Recurring Helper
  * Plugin URI: https://givewp.com/documentation/developers/how-to-create-custom-form-fields/
  * Description: This plugin demonstrates adds custom fields to your Give give forms with validation, email functionality, and field data output on the payment record within wp-admin.
  * Version: 1.0
@@ -47,30 +47,36 @@ function giret_give_custom_form_fields( $form_id ) {
 
 		if ( $recurringsupport == 'yes_donor' || $recurringsupport == 'yes_admin' ) :
 
-			$isrecurring = ( $recurringsupport == 'yes_donor' || $recurringsupport == 'yes_admin' ? 'Yes' : 'No');
+			$isrecurring = ( $recurringsupport != 'yes_donor' || $recurringsupport != 'yes_admin' ? 'No' : 'Yes');
 
 			if ( $recurringsupport == 'yes_donor' ) {
-			?>
-			<script type="text/javascript">
-		        jQuery(document).ready(function( $ ) {
-		            $('.give-recurring-donors-choice input').change(function(){
-		                $('#giret_give_is_recurring').val( $(this).is(':checked') ? 'Yes' : 'No' );
-		            })
-		        });
-			</script>
+				?>
+				<script type="text/javascript">
+                    jQuery(document).ready(function( $ ) {
+                        if ( $('.give-recurring-donors-choice input').is(":checked") ){
+                            $('#giret_give_is_recurring').val( 'Yes' );
+                        } else {
+                            $('#giret_give_is_recurring').val( 'No' );
+                        }
+
+                        $('.give-recurring-donors-choice input').change(function(){
+                            $('#giret_give_is_recurring').val( $(this).is(':checked') ? 'Yes' : 'No' );
+                        })
+                    });
+				</script>
 
 			<?php } if ( $recurringsupport == 'yes_admin' && $ismulti == 'multi') { ?>
 			<script type="text/javascript">
-	            jQuery(document).ready(function( $ ) {
+                jQuery(document).ready(function( $ ) {
 
-	                $('ul.give-donation-levels-wrap li button').click(function(){
-	                    $('#giret_give_is_recurring').val( $(this).is('.give-recurring-level') ? 'Yes' : 'No' );
-	                })
-	            });
+                    $('ul.give-donation-levels-wrap li button').click(function(){
+                        $('#giret_give_is_recurring').val( $(this).is('.give-recurring-level') ? 'Yes' : 'No' );
+                    })
+                });
 			</script>
-			<?php } ?>
+		<?php } ?>
 			<input type="hidden" name="giret_give_is_recurring" id="giret_give_is_recurring" value="<?php echo $isrecurring; ?>"></input>
-		<?php
+			<?php
 		endif;
 	endif;
 }
