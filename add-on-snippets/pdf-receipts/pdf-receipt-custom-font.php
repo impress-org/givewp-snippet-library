@@ -47,6 +47,10 @@ function give_pdf_receipts_support_languages() {
 			padding: 0;
 		}
 
+		/* Here we set ALL elements on the page to use the new font family.
+		   You can also specifically target various elements using a class name too
+		   and render more than one font family.
+		   */
 		*, body, div, html {
 			font-family: 'SimSun', sans-serif !important;
 		}
