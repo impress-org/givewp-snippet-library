@@ -1,5 +1,6 @@
-/*
+/**
  *  GirlDevelopIt Demo Form Style
+
  *  The following CSS snippet is the base styles for the layout for this demo:
  *  https://givewp.com/gdi-demo/#forms-multi
  *  NOTE: Minor adjustments will be necessary depending on your theme.
@@ -8,54 +9,55 @@
 
 .give-form-title,
 form[id*="give-form"] {
-    text-align: center;
+	text-align: center;
 }
 
 form[id*="give-form"] {
-    max-width: 600px;
+	max-width: 600px;
 }
 
 form[id*="give-form"] .give-total-wrap {
-    display: inline-block;
-    float: left;
-    clear: none;
-    margin: 16px 0;
-    position: relative;
+	display: inline-block;
+	float: left;
+	clear: none;
+	margin: 16px 0;
+	position: relative;
 }
 
 form[id*="give-form"] ul#give-donation-level-button-wrap {
-    float: right;
-    max-width: 65%;
-    clear: none;
-    border-left: 1px solid #DDD;
-    padding-left: 20px;
-    position: relative;
+	float: right;
+	max-width: 65%;
+	clear: none;
+	border-left: 1px solid #DDD;
+	padding-left: 20px;
+	position: relative;
 }
+
 form[id*="give-form"] ul#give-donation-level-button-wrap:before {
-    content: "\e604";
-    font-family: 'give-icomoon';
-    font-style: normal;
-    font-weight: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #68bb6c;
-    font-size: 20px;
-    background: #FFF;
-    padding: 3px 0;
-    position: absolute;
-    top: 16px;
-    left: -10px;
+	content: "\e604";
+	font-family: 'give-icomoon';
+	font-style: normal;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #68bb6c;
+	font-size: 20px;
+	background: #FFF;
+	padding: 3px 0;
+	position: absolute;
+	top: 16px;
+	left: -10px;
 }
 
 form[id*="give-form"] ul#give-donation-level-button-wrap li button {
-    width: 175px;
-    margin: 0;
+	width: 175px;
+	margin: 0;
 
 }
 
 form[id*="give-form"] .give-btn-modal {
-    display: block;
-    float: none;
-    clear: both;
-    width: 100%;
+	display: block;
+	float: none;
+	clear: both;
+	width: 100%;
 }
