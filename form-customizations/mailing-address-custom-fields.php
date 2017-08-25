@@ -1,12 +1,10 @@
 <?php
 
 /**
- * Outputs Mailing Address Fields
- * To all Give Forms and creates 
- * Mailing Address email tag
+ * Outputs Mailing Address Fields to all Give Forms and creates a mailing address email tag
  *
+ * @param $form_id
  */
- 
 function my_prefix_give_mailing_fields( $form_id ) {
 	?>
 	<fieldset id="give_mailing_address" class="mailing-address">
@@ -15,9 +13,9 @@ function my_prefix_give_mailing_fields( $form_id ) {
 		<p id="give-mailing-address-wrap" class="form-row form-row-wide">
 			<label for="mailing_address_1" class="give-label">
 				Address 1
-					<span class="give-required-indicator">*</span>
-					<span class="give-tooltip give-icon give-icon-question"
-					  data-tooltip="The mailing address of the recipient."></span>
+				<span class="give-required-indicator">*</span>
+				<span class="give-tooltip give-icon give-icon-question"
+				      data-tooltip="The mailing address of the recipient."></span>
 			</label>
 
 			<input
@@ -36,7 +34,7 @@ function my_prefix_give_mailing_fields( $form_id ) {
 				Address 2
 
 				<span class="give-tooltip give-icon give-icon-question"
-					  data-tooltip="(optional) The suite, apt no, PO box, etc, associated with this mailing address."></span>
+				      data-tooltip="(optional) The suite, apt no, PO box, etc, associated with this mailing address."></span>
 			</label>
 
 			<input
@@ -54,7 +52,7 @@ function my_prefix_give_mailing_fields( $form_id ) {
 				City
 				<span class="give-required-indicator">*</span>
 				<span class="give-tooltip give-icon give-icon-question"
-					  data-tooltip="The city of the recipient's mailing address."></span>
+				      data-tooltip="The city of the recipient's mailing address."></span>
 			</label>
 			<input
 					type="text"
@@ -73,7 +71,7 @@ function my_prefix_give_mailing_fields( $form_id ) {
 				<span class="give-required-indicator">*</span>
 
 				<span class="give-tooltip give-icon give-icon-question"
-					  data-tooltip="The zip or postal code of the recipient's mailing address."></span>
+				      data-tooltip="The zip or postal code of the recipient's mailing address."></span>
 			</label>
 
 			<input
@@ -94,7 +92,7 @@ function my_prefix_give_mailing_fields( $form_id ) {
 				<span class="give-required-indicator">*</span>
 
 				<span class="give-tooltip give-icon give-icon-question"
-					  data-tooltip="The country of your recipient's mailing address."></span>
+				      data-tooltip="The country of your recipient's mailing address."></span>
 			</label>
 
 			<select
@@ -125,7 +123,7 @@ function my_prefix_give_mailing_fields( $form_id ) {
 				<span class="give-required-indicator">*</span>
 
 				<span class="give-tooltip give-icon give-icon-question"
-					  data-tooltip="The state or province of your recipient's mailing address."></span>
+				      data-tooltip="The state or province of your recipient's mailing address."></span>
 			</label>
 
 			<?php
@@ -150,13 +148,14 @@ function my_prefix_give_mailing_fields( $form_id ) {
 				</select>
 			<?php else : ?>
 				<input type="text" size="6" name="mailing_state" id="mailing_state" class="mailing_state give-input"
-					   placeholder="<?php esc_attr_e( 'State / Province', 'give' ); ?>"/>
+				       placeholder="<?php esc_attr_e( 'State / Province', 'give' ); ?>" />
 			<?php endif; ?>
 		</p>
 
 	</fieldset>
 	<?php
 }
+
 add_action( 'give_after_donation_levels', 'my_prefix_give_mailing_fields', 10, 1 );
 
 /**
@@ -200,6 +199,7 @@ function myprefix_give_save_mailing_field_data( $payment_id, $payment_data ) {
 		add_post_meta( $payment_id, 'mailing_state', $message );
 	}
 }
+
 add_action( 'give_insert_payment', 'myprefix_give_save_mailing_field_data', 10, 2 );
 
 /**
@@ -212,10 +212,10 @@ add_action( 'give_insert_payment', 'myprefix_give_save_mailing_field_data', 10, 
 function myprefix123_give_mailing_fields_donation_details( $payment_id ) {
 	$address1 = get_post_meta( $payment_id, 'mailing_address_1', true );
 	$address2 = get_post_meta( $payment_id, 'mailing_address_2', true );
-	$city = get_post_meta( $payment_id, 'mailing_city', true );
-	$zip = get_post_meta( $payment_id, 'mailing_zip', true );
-	$country = get_post_meta( $payment_id, 'mailing_country', true );
-	$state = get_post_meta( $payment_id, 'mailing_state', true );
+	$city     = get_post_meta( $payment_id, 'mailing_city', true );
+	$zip      = get_post_meta( $payment_id, 'mailing_zip', true );
+	$country  = get_post_meta( $payment_id, 'mailing_country', true );
+	$state    = get_post_meta( $payment_id, 'mailing_state', true );
 
 	if ( $address1 ) : ?>
 
@@ -232,6 +232,7 @@ function myprefix123_give_mailing_fields_donation_details( $payment_id ) {
 
 	<?php endif;
 }
+
 add_action( 'give_view_order_details_billing_before', 'myprefix123_give_mailing_fields_donation_details', 10, 1 );
 
 /**
@@ -244,6 +245,7 @@ add_action( 'give_view_order_details_billing_before', 'myprefix123_give_mailing_
 function myprefix123_add_mailing_address_email_tag( $payment_id ) {
 	give_add_email_tag( 'honoree_mailing_address', 'This outputs the Mailing Address of the honoree', 'myprefix123_get_mailing_address_email_data' );
 }
+
 add_action( 'give_add_email_tags', 'myprefix123_add_mailing_address_email_tag' );
 
 /**
@@ -261,23 +263,24 @@ function myprefix123_get_mailing_address_email_data( $payment_id, $payment_meta 
 
 	$address1 = get_post_meta( $payment_id, 'mailing_address_1', true );
 	$address2 = get_post_meta( $payment_id, 'mailing_address_2', true );
-	$city = get_post_meta( $payment_id, 'mailing_city', true );
-	$zip = get_post_meta( $payment_id, 'mailing_zip', true );
-	$country = get_post_meta( $payment_id, 'mailing_country', true );
-	$state = get_post_meta( $payment_id, 'mailing_state', true );
+	$city     = get_post_meta( $payment_id, 'mailing_city', true );
+	$zip      = get_post_meta( $payment_id, 'mailing_zip', true );
+	$country  = get_post_meta( $payment_id, 'mailing_country', true );
+	$state    = get_post_meta( $payment_id, 'mailing_state', true );
 
 	$output = __( 'No referral data found.', 'give' );
 
 	if ( ! empty( $address1 ) ) {
 		ob_start(); ?>
-			<p><?php echo $address1; ?><br />
+		<p><?php echo $address1; ?><br />
 			<?php echo $address2; ?>
 			<?php echo $city; ?>, <?php echo $state; ?> <?php echo $zip; ?><br />
 			<?php echo $country; ?>
-			</p>
+		</p>
 		<?php
 
 		$output = ob_get_clean();
 	}
+
 	return $output;
 }
