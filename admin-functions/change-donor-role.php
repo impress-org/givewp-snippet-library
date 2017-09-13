@@ -9,7 +9,7 @@
  
 add_filter('give_insert_user_args', 'custom_give_user_role');
 
-function custom_give_user_role( $user_data ) {
+function custom_give_user_role( $user_args ) {
 	$user_args['role'] = 'contributor';
 
 	return $user_args;
