@@ -1,0 +1,12 @@
+/**
+ *   Fixes the "X" on our Modal for the Impreza theme
+ *
+ */
+ 
+.mfp-wrap.give-modal form .mfp-close {
+    display: inline-block !important;
+}
+
+.mfp-wrap.give-modal .mfp-container:after {
+    display: none;
+}
