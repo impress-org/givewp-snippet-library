@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function my_give_delete_old_licenses() {
-	give_get_settings();
+	
 	foreach ( give_get_settings() as $option => $value ) {
 		if ( stripos( strrev( $option ), strrev( '_license_key' ) ) === 0 ) {
 			give_delete_option( $option );
