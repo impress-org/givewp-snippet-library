@@ -1,0 +1,24 @@
+<?php
+
+/**
+ *  Display the Current URL of the Donation Form
+ *  from which the donation was submitted from.
+ */
+ 
+function givecustomer_display_current_url( $payment_id  ) {
+
+	// Bounce out if no data for this transaction
+	$current_url = get_post_meta( $payment_id, '_give_current_url', true );
+
+	if ( $current_url ) : ?>
+
+		<p>
+			<strong>URL of Donation Submission:</strong><br>
+			<a href="<?php echo $current_url; ?>"><?php echo $current_url; ?></a>
+		</p>
+
+	<?php endif;
+
+}
+
+add_action( 'give_payment_view_details', 'givecustomer_display_current_url', 10, 2 );
