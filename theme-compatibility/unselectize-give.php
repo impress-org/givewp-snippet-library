@@ -9,22 +9,22 @@
 add_action('wp_footer', 'give_unselectize_give_forms');
 
 function give_unselectize_give_forms() {
-		// Only for if the fields are in a modal
-		// The script runs after Magnific is opened.
-		
-		?>
-		<script>
+	// Only for if the fields are in a modal
+	// The script runs after Magnific is opened.
 
-            ( function( $ ) {
-                $( document ).on( 'mfpOpen', function() {
+	?>
+	<script>
 
-                    var $select = $('select.give-select').selectize();
+	    ( function( $ ) {
+		$( document ).on( 'mfpOpen', function() {
 
-                    $select[0].selectize.destroy();
-                    $select[1].selectize.destroy();
+		    var $select = $('select.give-select').selectize();
 
-                } );
-            } )( jQuery );
-		</script>
-		<?php
+		    $select[0].selectize.destroy();
+		    $select[1].selectize.destroy();
+
+		} );
+	    } )( jQuery );
+	</script>
+	<?php
 }
