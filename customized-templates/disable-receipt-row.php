@@ -2,6 +2,8 @@
 
 /**
  *  Disables the "Donation" row from the Donation Receipt page
+ *  See here for a list of other $updated_args:
+ *  https://github.com/WordImpress/Give-Snippet-Library/blob/master/customized-templates/add-or-reorder-donation-receipt-items.php
  *
  */
  
