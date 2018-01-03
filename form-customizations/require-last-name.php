@@ -16,6 +16,16 @@ function give_require_last_name( $required_fields, $form_id ) {
 		'error_id'      => 'invalid_last_name',
 		'error_message' => __( 'Please enter your last name', 'give' )
 	);
+	
+	//If restricting by gateway:
+	$stripe = give_is_gateway_active( 'give-stripe' );
+
+	if ($stripe) {
+		$required_fields['card_state'] = array(
+			'error_id'      => 'invalid_card_state',
+			'error_message' => __( 'Please enter your Credit Cards billing State.', 'give-stripe' )
+		);
+	}
 
 	return $required_fields;
 }
