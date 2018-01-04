@@ -222,10 +222,10 @@ function myprefix123_give_mailing_fields_donation_details( $payment_id ) {
 		<div id="give-mailing-address" class="postbox">
 			<h3 class="hndle"><?php esc_html_e( 'Recipient Mailing Address', 'give' ); ?></h3>
 			<div class="inside" style="padding-bottom:10px;">
-				<p><?php echo $address1; ?><br />
-					<?php echo $address2; ?>
-					<?php echo $city; ?>, <?php echo $state; ?> <?php echo $zip; ?><br />
-					<?php echo $country; ?>
+				<p><?php echo esc_html( $address1 ); ?><br />
+					<?php echo esc_html( $address2 ); ?>
+					<?php echo esc_html( $city ); ?>, <?php echo esc_html( $state ); ?> <?php echo esc_html( $zip ); ?><br />
+					<?php echo esc_html( $country ); ?>
 				</p>
 			</div>
 		</div>
@@ -272,10 +272,10 @@ function myprefix123_get_mailing_address_email_data( $payment_id, $payment_meta 
 
 	if ( ! empty( $address1 ) ) {
 		ob_start(); ?>
-		<p><?php echo $address1; ?><br />
-			<?php echo $address2; ?>
-			<?php echo $city; ?>, <?php echo $state; ?> <?php echo $zip; ?><br />
-			<?php echo $country; ?>
+		<p><?php echo esc_html( $address1 ); ?><br />
+			<?php echo esc_html( $address2 ); ?>
+			<?php echo esc_html( $city ); ?>, <?php echo esc_html( $state ); ?> <?php echo esc_html( $zip ); ?><br />
+			<?php echo esc_html( $country ); ?>
 		</p>
 		<?php
 

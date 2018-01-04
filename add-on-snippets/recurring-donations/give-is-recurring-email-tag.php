@@ -75,7 +75,7 @@ function giret_give_custom_form_fields( $form_id ) {
                 });
 			</script>
 		<?php } ?>
-			<input type="hidden" name="giret_give_is_recurring" id="giret_give_is_recurring" value="<?php echo $isrecurring; ?>"></input>
+			<input type="hidden" name="giret_give_is_recurring" id="giret_give_is_recurring" value="<?php echo esc_attr( $isrecurring ); ?>"></input>
 			<?php
 		endif;
 	endif;

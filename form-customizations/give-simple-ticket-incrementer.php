@@ -62,7 +62,7 @@ function give_tickets_form_add_incrementer( $form_id ) {
 		<?php
 		$output = ob_get_clean();
 
-		echo $output;
+		echo wp_kses_post( $output );
 	}
 }
 
@@ -73,7 +73,7 @@ function give_tickets_save_ticket_amount( $payment_id, $payment_data ) {
 
 		add_post_meta( $payment_id, 'give_ticket_number', $ticket_amount );
 	}
-	
+
 }
 
 add_action( 'give_insert_payment', 'give_tickets_save_ticket_amount', 10, 2 );
@@ -91,8 +91,8 @@ function give_tickets_ticket_amount_donation_meta( $payment_id ) {
 
                 <div class="ticket-amount">
                     <p>
-                        <label><strong><?php _e( 'Ticket Amount:', 'give' ); ?></strong></label>
-						<?php echo '<span>' . $give_ticket_amount . '</span>'; ?>
+                        <label><strong><?php esc_html_e( 'Ticket Amount:', 'give' ); ?></strong></label>
+						<?php echo '<span>' . esc_html( $give_ticket_amount ) . '</span>'; ?>
                     </p>
                 </div>
 

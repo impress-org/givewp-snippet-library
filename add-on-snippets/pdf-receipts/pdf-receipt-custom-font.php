@@ -19,27 +19,27 @@ function give_pdf_receipts_support_languages() {
 			font-family: 'SimSun';
 			font-style: normal;
 			font-weight: normal;
-			src: url('<?php echo $custom_font; ?>') format('truetype');
+			src: url('<?php echo esc_url( $custom_font ); ?>') format('truetype');
 		}
 
 		@font-face {
 			font-family: 'SimSun';
 			font-style: italic;
-			src: url('<?php echo $custom_font; ?>') format('truetype');
+			src: url('<?php echo esc_url( $custom_font ); ?>') format('truetype');
 		}
 
 		@font-face {
 			font-family: 'SimSun';
 			font-style: italic;
 			font-weight: bold;
-			src: url('<?php echo $custom_font; ?>') format('truetype');
+			src: url('<?php echo esc_url( $custom_font ); ?>') format('truetype');
 		}
 
 		@font-face {
 			font-family: 'SimSun';
 			font-style: normal;
 			font-weight: bold;
-			src: url('<?php echo $custom_font; ?>') format('truetype');
+			src: url('<?php echo esc_url( $custom_font ); ?>') format('truetype');
 		}
 
 		html, body {
