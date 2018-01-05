@@ -23,32 +23,32 @@ function my_custom_alert_message() {
 	$output = "<div class='my_custom_alert'>";
 
 	//to display AMEX, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $amex . "' />";
+	$output .= "<img src='" . esc_url( $amex ) . "' />";
 
 	//to display Diners Club, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $diners . "' />";
+	$output .= "<img src='" . esc_url( $diners ) . "' />";
 
 	//to display DISCOVER, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $discover . "' />";
+	$output .= "<img src='" . esc_url( $discover ) . "' />";
 
 	//to display JCB, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $jcb . "' />";
+	$output .= "<img src='" . esc_url( $jcb ) . "' />";
 
 	//to display MAESTRO, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $maestro . "' />";
+	$output .= "<img src='" . esc_url( $maestro ) . "' />";
 
 	//to display MASTERCARD, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $mastercard . "' />";
+	$output .= "<img src='" . esc_url( $mastercard ) . "' />";
 
 	//to display UNIONPAY, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $unionpay . "' />";
+	$output .= "<img src='" . esc_url( $unionpay ) . "' />";
 
 	//to display VISA, leave this line as is. Otherwise, delete it.
-	$output .= "<img src='" . $visa . "' />";
+	$output .= "<img src='" . esc_url( $visa ) . "' />";
 
 	$output .= "</div>";
 
-	echo $output;
+	echo wp_kses_post( $output );
 }
 
 

@@ -25,7 +25,7 @@ function give_donor_list_shortcode_function_example( $atts ) {
 
 	if ( $wp_query->have_posts() ) : ?>
 
-		<h2><?php echo $atts['heading'] ?></h2>
+		<h2><?php echo esc_html( $atts['heading'] ); ?></h2>
 		<hr />
 		<ul>
 			<?php
@@ -46,8 +46,8 @@ function give_donor_list_shortcode_function_example( $atts ) {
 				$total     = $meta['_give_payment_total'][0];
 				?>
 				<li>
-					<strong><?php echo $firstname . ' ' . $lastname; ?></strong> for their gift of
-					$<?php echo $total; ?>
+					<strong><?php echo esc_html( $firstname . ' ' . $lastname ); ?></strong> for their gift of
+					$<?php echo esc_html( $total ); ?>
 				</li>
 				<?php
 			endwhile;

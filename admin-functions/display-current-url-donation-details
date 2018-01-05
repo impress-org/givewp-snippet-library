@@ -4,7 +4,7 @@
  *  Display the Current URL of the Donation Form
  *  from which the donation was submitted from.
  */
- 
+
 function givecustomer_display_current_url( $payment_id  ) {
 
 	// Bounce out if no data for this transaction
@@ -14,7 +14,7 @@ function givecustomer_display_current_url( $payment_id  ) {
 
 		<p>
 			<strong>URL of Donation Submission:</strong><br>
-			<a href="<?php echo $current_url; ?>"><?php echo $current_url; ?></a>
+			<a href="<?php echo esc_url( $current_url ); ?>"><?php echo esc_url( $current_url ); ?></a>
 		</p>
 
 	<?php endif;
