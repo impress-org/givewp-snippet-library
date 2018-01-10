@@ -1,65 +1,118 @@
 <?php
+
 /**
- * A [donor_list] shortcode to list donors with names and amounts with attributes:
+ * A [my_donor_list] shortcode to list donors with names and amounts with attributes:
  *
- * @number  = the number of donations to list
- * @form_id = whether to limit the donors to a specific form
- * @heading = the text heading that appears above the donor list
+ * @number  = the number of donations to list.
+ * @form_id = whether to limit the donors to a specific form.
+ * @heading = the text heading that appears above the donor list.
  *
  * @param $atts
  */
 function give_donor_list_shortcode_function_example( $atts ) {
 
+	if ( ! class_exists( 'Give_Payments_Query' ) ) {
+		return;
+	}
+
 	$atts = shortcode_atts( array(
-		'number'  => '',
+		'number'  => 30,
 		'form_id' => '',
 		'heading' => 'We\'d like to thank the following gracious donors:',
-	), $atts, 'donor_list' );
+	), $atts, 'my_donor_list' );
 
 	$args = array(
-		'post_type'      => 'give_payment',
-		'posts_per_page' => $atts['number'],
+		'output' => 'payments',
+		'number' => $atts['number'],
 	);
 
-	$wp_query = new WP_Query( $args );
+	$payments = new Give_Payments_Query( $args );
+	$payments = $payments->get_payments();
 
-	if ( $wp_query->have_posts() ) : ?>
+	if ( $payments ) : ?>
+		<style>
+			/* Flex grid */
+			ul {
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+			}
 
+			ul.my-give-donor-wall li {
+				text-align: center;
+				list-style-type: none;
+				display: flex;
+				padding: 0.5em;
+				width: 100%;
+			}
+
+			@media all and (min-width: 40em) {
+				ul.my-give-donor-wall li {
+					width: 50%;
+				}
+			}
+
+			@media all and (min-width: 60em) {
+				ul.my-give-donor-wall li {
+					width: 33.33%;
+				}
+			}
+
+			/* List content */
+			.my-give-donorwall-donor {
+				background-color: #fff;
+				display: flex;
+				flex-direction: column;
+				padding: 1em;
+				width: 100%;
+			}
+
+			/* Avatar */
+			ul.my-give-donor-wall .my-give-donorwall-avatar {
+				display: block;
+				margin: 0 0 10px;
+				text-align: center;
+			}
+
+			ul.my-give-donor-wall .my-give-donorwall-avatar img {
+				border-radius: 50%;
+			}
+
+
+		</style>
 		<h2><?php echo esc_html( $atts['heading'] ); ?></h2>
 		<hr />
-		<ul>
+		<ul class="my-give-donor-wall">
 			<?php
 			/**
-			 * Getting user data is a bit more complex.
+			 * Loop through individual payments.
 			 *
-			 * Also keep in mind whether or not your donors actually WANT their names posted publicly.
 			 */
-			while ( $wp_query->have_posts() ) : $wp_query->the_post();
-				$meta = get_post_meta( get_the_ID() );
-				// Transaction have their own metadata; let's get it.
-				$paymentmeta = $meta['_give_payment_meta'];
-				// The metadata is serialized. Let's pull that apart.
-				$getmeta = maybe_unserialize( $paymentmeta[0] );
-				// Now that we've got it, we can define the name
-				$firstname = $getmeta['user_info']['first_name'];
-				$lastname  = $getmeta['user_info']['last_name'];
-				$total     = $meta['_give_payment_total'][0];
+			foreach ( $payments as $payment ) :
+				/* @var $payment \Give_Payment */
+				$first_name = $payment->get_meta( '_give_donor_billing_first_name', true );
+				$last_name = $payment->get_meta( '_give_donor_billing_last_name', true );
+
+				$total  = give_currency_filter( give_format_amount( $payment->total, array( 'sanitize' => false ) ), array( 'currency_code' => $payment->currency ) );
+				$avatar = get_avatar( $payment->email, 64 );
 				?>
 				<li>
-					<strong><?php echo esc_html( $firstname . ' ' . $lastname ); ?></strong> for their gift of
-					$<?php echo esc_html( $total ); ?>
+					<div class="my-give-donorwall-donor">
+						<span class="my-give-donorwall-avatar"><?php echo $avatar; ?></span>
+						<span class="my-give-donorwall-name"><?php echo esc_html( $first_name . ' ' . $last_name ); ?></span> <span
+								class="my-give-donorwall-total"><?php echo $total;
+							?></span>
+					</div>
 				</li>
-				<?php
-			endwhile;
-			wp_reset_postdata(); // end of Query 1 ?>
+			<?php endforeach; ?>
 		</ul>
 	<?php else : ?>
 		<!-- If you don't have donations that fit this query -->
 		<h2>Sorry you don't have any donation payments that fit this query</h2>
 
 	<?php endif;
-	wp_reset_query();
 
 }
 
-add_shortcode( 'donor_list', 'give_donor_list_shortcode_function_example' );
+add_shortcode( 'my_donor_list', 'give_donor_list_shortcode_function_example' );
