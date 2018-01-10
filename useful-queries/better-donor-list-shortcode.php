@@ -31,55 +31,47 @@ function give_donor_list_shortcode_function_example( $atts ) {
 
 	if ( $payments ) : ?>
 		<style>
-			/* Flex grid */
-			ul {
-				margin: 0;
-				padding: 0;
-				display: flex;
-				flex-wrap: wrap;
-			}
-
+		    /* Flex grid */
+		    ul {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+		    }
+		    ul.my-give-donor-wall li {
+			list-style-type: none;
+			display: flex;
+			padding: 0.5em;
+			width: 100%;
+		    }
+		    @media all and (min-width: 40em) {
 			ul.my-give-donor-wall li {
-				text-align: center;
-				list-style-type: none;
-				display: flex;
-				padding: 0.5em;
-				width: 100%;
+			    width: 50%;
 			}
-
-			@media all and (min-width: 40em) {
-				ul.my-give-donor-wall li {
-					width: 50%;
-				}
+		    }
+		    @media all and (min-width: 60em) {
+			ul.my-give-donor-wall li {
+			    width: 33.33%;
 			}
-
-			@media all and (min-width: 60em) {
-				ul.my-give-donor-wall li {
-					width: 33.33%;
-				}
-			}
-
-			/* List content */
-			.my-give-donorwall-donor {
-				background-color: #fff;
-				display: flex;
-				flex-direction: column;
-				padding: 1em;
-				width: 100%;
-			}
-
-			/* Avatar */
-			ul.my-give-donor-wall .my-give-donorwall-avatar {
-				display: block;
-				margin: 0 0 10px;
-				text-align: center;
-			}
-
-			ul.my-give-donor-wall .my-give-donorwall-avatar img {
-				border-radius: 50%;
-			}
-
-
+		    }
+		    /* List content */
+		    .my-give-donorwall-donor {
+			text-align: center;
+			background-color: #fff;
+			display: flex;
+			flex-direction: column;
+			padding: 1em;
+			width: 100%;
+		    }
+		    /* Avatar */
+		    ul.my-give-donor-wall .my-give-donorwall-avatar {
+			display: block;
+			margin: 0 auto;
+			text-align: center;
+		    }
+		    ul.my-give-donor-wall .my-give-donorwall-avatar img {
+			border-radius: 50%;
+		    }
 		</style>
 		<h2><?php echo esc_html( $atts['heading'] ); ?></h2>
 		<hr />
