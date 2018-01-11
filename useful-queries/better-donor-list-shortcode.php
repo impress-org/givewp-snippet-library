@@ -92,7 +92,7 @@ function give_donor_list_shortcode_function_example( $atts ) {
 				$first_name = $payment->get_meta( '_give_donor_billing_first_name', true );
 				$last_name = $payment->get_meta( '_give_donor_billing_last_name', true );
 
-				$total  = give_currency_filter( give_format_amount( $payment->total, array( 'sanitize' => false ) ), array( 'currency_code' => $payment->currency ) );
+				$total  = give_donation_amount( $payment->ID, array( 'currency' => true ) );
 				$avatar = get_avatar( $payment->email, 64 );
 				?>
 				<li>
