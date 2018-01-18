@@ -3,6 +3,8 @@
 /**
  * A [my_donor_list] shortcode to list donors with names and amounts with attributes:
  *
+ * NOTE: Requires Give version 2.0+
+ *
  * @number  = the number of donations to list.
  * @form_id = whether to limit the donors to a specific form.
  * @heading = the text heading that appears above the donor list.
