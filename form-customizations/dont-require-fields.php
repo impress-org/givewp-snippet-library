@@ -22,3 +22,24 @@ function give_dont_require_fields( $required_fields, $form_id ) {
 }
 
 add_filter( 'give_donation_form_required_fields', 'give_dont_require_fields', 10, 2 );
+
+// Don't Require ALL Billing Fields
+function give_dont_require_all_billing_fields( $required_fields, $form_id ) {
+	if(isset($required_fields['card_state'])) {
+		unset($required_fields['card_state']);
+	}
+	if(isset($required_fields['card_zip'])) {
+		unset($required_fields['card_zip']);
+	}
+	if(isset($required_fields['card_city'])) {
+		unset($required_fields['card_city']);
+	}
+	if(isset($required_fields['card_address'])) {
+		unset($required_fields['card_address']);
+	}
+	if(isset($required_fields['billing_country'])) {
+		unset($required_fields['billing_country']);
+	}
+	return $required_fields;
+}
+add_filter( 'give_donation_form_required_fields', 'give_dont_require_all_billing_fields', 10, 2 );
