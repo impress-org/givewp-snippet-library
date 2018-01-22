@@ -152,14 +152,13 @@ add_action( 'give_add_email_tags', 'my_custom_prefix_add_sample_referral_tag' );
  * Example function that returns Custom field data if present in payment_meta;
  * The example used here is in conjunction with the Give documentation tutorials.
  *
- * @param $payment_id
- * @param $payment_meta
+ * @param array $tag_args Array of arguments
  *
  * @return string
  */
-function my_custom_prefix_get_donation_referral_data( $payment_id, $payment_meta ) {
+function my_custom_prefix_get_donation_referral_data( $tag_args ) {
 
-	$engraving_message = get_post_meta( $payment_id, 'give_engraving_message', true );
+	$engraving_message = get_post_meta( $tag_args['payment_id'], 'give_engraving_message', true );
 
 	$output = __( 'No referral data found.', 'give' );
 
