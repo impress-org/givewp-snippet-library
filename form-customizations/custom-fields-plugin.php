@@ -133,12 +133,14 @@ add_action( 'give_view_order_details_billing_before', 'myprefix123_give_donation
  * Adds a Custom "Engraved Message" Tag
  *
  * This function creates a custom Give email template tag.
- *
- * @param $payment_id
  */
-function my_custom_prefix_add_sample_referral_tag( $payment_id ) {
+function my_custom_prefix_add_sample_referral_tag() {
 
-	give_add_email_tag( 'engraving_message', 'This outputs the Engraved Message', 'my_custom_prefix_get_donation_referral_data' );
+	give_add_email_tag(
+			'engraving_message',
+			'This outputs the Engraved Message',
+			'my_custom_prefix_get_donation_referral_data'
+	);
 
 }
 
