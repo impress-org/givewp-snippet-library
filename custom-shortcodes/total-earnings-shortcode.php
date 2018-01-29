@@ -1,6 +1,6 @@
 <?php
 /**
- *  Creates a shortcode to displays a "nag" (which can be styled with CSS targeting a class of 'my-custom-nag')
+ *  Creates a shortcode to display a message with goals (and amounts raised) across multiple forms (which can be styled with CSS targeting a class of 'my-custom-nag')
  *
  *  Sample shortcodes:
  *

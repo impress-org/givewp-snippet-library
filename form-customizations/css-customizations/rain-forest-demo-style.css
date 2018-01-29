@@ -1,0 +1,99 @@
+/**
+ *  Rain Forest Demo Form Style
+ *
+ *  The following CSS snippet is the base styles for the layout for this demo:
+ *  https://givewp.com/gdi-demo/#forms-multi
+ *  NOTE: This will only work if your form is using the MODAL display mode, and is a multi-level form with BUTTON style levels.
+ *  NOTE: Minor adjustments will be necessary depending on your theme.
+ */
+
+.give-form-title {
+	color: #68bb6c;
+	text-align: center;
+	font-weight: bold;
+}
+
+form[id*='give-form'], #give-recurring-form,
+form.give-form {
+	margin-bottom: 0 !important;
+}
+
+div[id*="give-form"].give-form-wrap {
+	background: #f0eee8;
+	border-radius: 3px;
+	border-color: #cbc9c4;
+	padding: 15px;
+}
+
+form[id*="give-form"] {
+	max-width: 600px;
+}
+
+form[id*="give-form"] .give-total-wrap {
+	display: inline-block;
+	float: left;
+	clear: none;
+	margin: 16px 0;
+	position: relative;
+}
+
+form[id*="give-form"] ul#give-donation-level-button-wrap {
+	float: right;
+	max-width: 62%;
+	clear: none;
+	border-left: 1px solid #DDD;
+	padding-left: 20px;
+	position: relative;
+}
+
+/* Heart icon */
+form[id*="give-form"] ul#give-donation-level-button-wrap:before {
+	content: "\e604";
+	font-family: 'give-icomoon';
+	font-style: normal;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #68bb6c;
+	font-size: 20px;
+	background: transparent;
+	padding: 3px 0;
+	position: absolute;
+	top: 16px;
+	left: -10px;
+}
+
+form[id*="give-form"] #give-donation-level-button-wrap > li {
+	list-style-type: none;
+	list-style-image: none;
+	width: 46%;
+	margin: 0 2% 2%;
+	float: left;
+}
+
+/* Last li containing the button is full width if using custom amount enabled form */
+form[id*="give-form"] #give-donation-level-button-wrap > li:last-child {
+	width:100%;
+}
+
+form[id*="give-form"] ul#give-donation-level-button-wrap li button {
+	width: 100%;
+	margin: 0;
+	background: #ffffff;
+	color: #333;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+}
+
+form[id*="give-form"] .give-btn-modal,
+[id*='give-form'].give-display-modal .give-btn {
+	display: block;
+	float: none;
+	clear: both;
+	width: 100%;
+	color: #FFF;
+	background: #546d78;
+	border: none;
+	text-transform: uppercase;
+	margin: 0;
+}

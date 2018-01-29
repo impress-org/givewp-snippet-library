@@ -5,16 +5,16 @@
  *  This snippet is a page template with 3 Sample Queries
  *  Each query displays subtly different information about
  *  your transactions.
- *  
+ *
  *  Please be sensitive to whether your donors want any of
  *  this information public at all.
- *  
- *  IMPORTANT: This snippet, unlike others you might find in 
- *  our snippet library, does not go in functions.php or a 
+ *
+ *  IMPORTANT: This snippet, unlike others you might find in
+ *  our snippet library, does not go in functions.php or a
  *  must-use plugin. Save this entire file as something like
  *  'page_list-donations.php' and place it in your theme's folder.
  *  then create a new page, and select "List Donations" from the
- *  dropdown menu. Publish the page and view it 
+ *  dropdown menu. Publish the page and view it
  *  on the front end of your site.
  */
 
@@ -75,9 +75,9 @@ get_header();
 					$gateway = $meta['_give_payment_gateway'][0];
 					?>
 
-					<li><strong>Donation for $<?php echo $total; ?></strong><br/>
-						Was given on <?php echo $date; ?><br/>
-						With the <?php echo $gateway; ?> Payment Gateway
+					<li><strong>Donation for $<?php echo esc_html( $total ); ?></strong><br/>
+						Was given on <?php echo esc_html( $date ); ?><br/>
+						With the <?php echo esc_html( $gateway ); ?> Payment Gateway
 					</li>
 
 				<?php endwhile;
@@ -123,9 +123,9 @@ get_header();
 					$date    = date( "F j, Y", strtotime( $getdate ) );
 					$gateway = $meta['_give_payment_gateway'][0];
 					?>
-					<li><strong>Donation for $<?php echo $total; ?></strong><br/>
-						Was given on <?php echo $date; ?><br/>
-						With the <?php echo $gateway; ?> Payment Gateway
+					<li><strong>Donation for $<?php echo esc_html( $total ); ?></strong><br/>
+						Was given on <?php echo esc_html( $date ); ?><br/>
+						With the <?php echo esc_html( $gateway ); ?> Payment Gateway
 					</li>
 
 				<?php endwhile;
@@ -183,8 +183,8 @@ get_header();
 					?>
 
 					<li>
-						<strong>Thanks to <?php echo $firstname . ' ' . $lastname; ?></strong><br/>
-						For their generous gift of $<?php echo $total; ?><br/>
+						<strong>Thanks to <?php echo esc_html( $firstname . ' ' . $lastname ); ?></strong><br/>
+						For their generous gift of $<?php echo esc_html( $total ); ?><br/>
 					</li>
 				<?php endwhile;
 				wp_reset_postdata(); // end of Query 1 ?>
