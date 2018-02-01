@@ -11,7 +11,7 @@ function give_pdf_receipt_customize_receipt_link_allowed( $val, $id ) {
 
 	// Customize minimum amount below.
 	$min_amount = 40;
-	$amount     = give_get_payment_amount( $id );
+	$amount     = give_donation_amount( $id );
 
 	// Adjust min. value here.
 	if ( $min_amount <= $amount ) {
