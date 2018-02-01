@@ -15,10 +15,11 @@
  */
  
 function my_custom_give_email_content( $email_body, $payment_id, $payment_data ) {
-	$amount = give_get_payment_amount($payment_id);
-	$form_id = give_get_payment_form_id($payment_id);
-	//Check if this payment's donation amount and form ID matches the donation form we want custom email body copy
 
+	$amount = give_donation_amount( $payment_id );
+	$form_id = give_get_payment_form_id( $payment_id );
+
+	//Check if this payment's donation amount and form ID matches the donation form we want custom email body copy
 	if ( $amount < 5 && $form_id == '1329'  ) {
 		//Here you can output custom content or pull from custom post meta using get_post_meta, or use an ACF field, WordPress functions, etc.
 		//You can also use Give's email tags like {price}, {fullname}, etc.
