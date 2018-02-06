@@ -54,12 +54,9 @@ add_action( 'wp_print_scripts', 'give_mysite_dequque_posttype_script', 100 );
  * Dequeue Stripe JS just on certain Page IDs
  */
 function conditional_remove_give_stripe_js() {
-
-	// Get all pages, and define page IDs to exclude
-	$all_pages = is_page();
-	$excluded_pages = array(2,3);
-
-	if ( in_array( $all_pages, $excluded_pages ) ) {
+	
+	// Check Page IDs to exclude
+	if ( is_page( array(2,3) ) ) {
 		wp_deregister_script( 'give-stripe-js' );
 	}
 
