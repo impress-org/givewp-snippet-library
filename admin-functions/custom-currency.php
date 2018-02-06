@@ -9,7 +9,7 @@
  *
  * Get the Unicode for Currencies here:
  * https://www.w3schools.com/charsets/ref_utf_currency.asp
- * 
+ *
  * This adds the currency as an option in your currency settings
  * and will output in your front-end forms. But it is up to your
  * Payment Gateway to handle that currency correctly.
@@ -20,6 +20,9 @@
 
 /**
  * Adds Costa Rican Colon currency to your Give settings
+ * it's required Give minimum Version 1.8.15
+ *
+ * @since 1.8.15
  *
  * @param $currencies
  *
@@ -27,30 +30,12 @@
  */
 function my_give_add_costarican_currency( $currencies ) {
 
-	$currencies['CRC'] = __( 'Costa Rican Col&oacute;n (&#8353;)', 'give' );
+	$currencies['CRC'] = array(
+		'admin_label' => __( 'Costa Rican Col&oacute;n (&#8353;)', 'give' ),
+		'symbol'      => '&#8353;',
+	);
 
 	return $currencies;
 }
 
-add_filter( 'give_currencies', 'my_give_add_costarican_currency' );
-
-
-/**
- * Converts the currency code to the correct HTML character symbol for the form output.
- *
- * @param $symbol
- * @param $currency
- *
- * @return string
- */
-function my_give_add_colon_symbol( $symbol, $currency ) {
-
-	switch ( $currency ) :
-		case "CRC" :
-			$symbol = '&#8353;';
-			break;
-	endswitch;
-
-	return $symbol;
-}
-add_filter( 'give_currency_symbol', 'my_give_add_colon_symbol', 10, 2 );
+add_filter( 'give_currencies', 'my_give_add_costarican_currency', 10, 1 );
