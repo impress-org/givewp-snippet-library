@@ -9,33 +9,31 @@ function give_basic_recent_donors_function() {
 		'number' => 100,
 	);
 
-	$donors = Give()->customers->get_customers( $args );
+	$donors = Give()->donors->get_donors( $args );
 
 	$output = '';
 
 	foreach ( $donors as $donor ) {
 
-		$output = $donor->name . ', ';
-		// First and Last Name
-		$name = $donor->name;
+		// Create Donor Object.
+		$donor = new Give_Donor( $donor->id );
 
-		// Split up the names
-		$separate = explode( ' ', $name );
+		// Get First Name.
+		$first_name = $donor->get_first_name();
 
-		// find the surname
-		$last = array_pop( $separate );
+		// Get Last Name Initial Letter.
+		$last_name_initial = substr( $donor->get_last_name(), 0, 1 );
 
-		// Shorten up the name so it's Jason T.  instead of Jason Tucker
-		$shortenedname = implode( ' ', $separate ) . ' ' . $last[0] . '.';
-
-		// Display the Jason T. and include a , after it.
-		$output .= $shortenedname . ', ';
+		// Prepare Output.
+		$output .= "{$first_name}";
+		$output .= $last_name_initial ? " {$last_name_initial}, " : ', ';
 
 	}
-	$output .= ' and many more.';
+
+	$output .= __( ' and many more.', 'give' );
 
 	return $output;
 
 }
 
-add_shortcode( 'donor_list', 'recent_donors_function' );
+add_shortcode( 'donor_list', 'give_basic_recent_donors_function' );
