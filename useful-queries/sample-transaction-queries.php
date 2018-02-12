@@ -66,18 +66,17 @@ get_header();
 			'number' => 3
 		);
 
-		$payments = new Give_Payments_Query( $args );
-		$payments = $payments->get_payments();
+		$loop1 = new Give_Payments_Query( $args );
+		$loop1 = $loop1->get_payments();
 
 
-		if ( $payments ) {
+		if ( $loop1 ) {
 			?>
 			<h2>Output latest 3 donations with amount and date</h2>
 			<hr/>
 			<ul>
 				<?php
-				foreach ( $payments as $payment ) {
-					$meta    = give_get_meta( $payment->ID );
+				foreach ( $loop1 as $payment ) {
 					?>
 
 					<li><strong>Donation for $<?php echo esc_html( $payment->total ); ?></strong><br/>
@@ -106,44 +105,42 @@ get_header();
 		 */
 
 		// Query 2 Arguments
-		$args2 = array(
-			'post_type'      => 'give_payment',
-			'posts_per_page' => 3,
+		$args = array(
+			'number' => 3,
 			'meta_key'       => '_give_payment_gateway',
 			'meta_value'     => 'manual',
 			'meta_compare'   => '=',
 		);
 
-		$loop2 = new WP_Query( $args2 );
+		$loop2 = new Give_Payments_Query( $args );
+		$loop2 = $loop2->get_payments();
 
-		if ( $loop2->have_posts() ) : ?>
-
+		if ( $loop2 ) {
+			?>
 			<h2>Output latest 3 Offline donations with amount and email address</h2>
 			<hr/>
 			<ul>
 				<?php
-				while ( $loop2->have_posts() ) : $loop2->the_post();
-					$meta    = get_post_meta( get_the_ID() );
-					$total   = $meta['_give_payment_total'][0];
-					$getdate = $meta['_give_completed_date'][0];
-					$date    = date( "F j, Y", strtotime( $getdate ) );
-					$gateway = $meta['_give_payment_gateway'][0];
+				foreach ( $loop2 as $payment ) {
+					$meta    = give_get_meta( $payment->ID );
 					?>
-					<li><strong>Donation for $<?php echo esc_html( $total ); ?></strong><br/>
-						Was given on <?php echo esc_html( $date ); ?><br/>
-						With the <?php echo esc_html( $gateway ); ?> Payment Gateway
+
+					<li><strong>Donation for $<?php echo esc_html( $payment->total ); ?></strong><br/>
+						Was given on <?php echo esc_html( date( "F j, Y", strtotime( $payment->date ) ) ); ?><br/>
+						With the <?php echo esc_html( $payment->gateway ); ?> Payment Gateway
 					</li>
-
-				<?php endwhile;
-				wp_reset_postdata(); // end of Query 1 ?>
+					<?php
+				}
+				?>
 			</ul>
-
-		<?php else : ?>
+			<?php
+		} else {
+			?>
 			<!-- If you don't have donations that fit this query -->
 			<h2>Sorry you don't have any transactions that fit this query</h2>
-
-		<?php endif;
-		wp_reset_query(); ?>
+			<?php
+		}
+		?>
 
 		<?php
 		/**
