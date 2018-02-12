@@ -8,7 +8,7 @@
  *
  * @return mixed
  */
-function give_render_meta_data_email_tag( $content, $tag_args ){
+function my_give_render_meta_data_email_tag( $content, $tag_args ){
 	if( ! isset( $tag_args['payment_id'] ) ) {
 		return $content;
 	}
@@ -35,4 +35,4 @@ function give_render_meta_data_email_tag( $content, $tag_args ){
 
 	return $content;
 }
-add_filter( 'give_email_template_tags', 'give_render_meta_data_email_tag', 10, 2 );
+add_filter( 'give_email_template_tags', 'my_give_render_meta_data_email_tag', 10, 2 );
