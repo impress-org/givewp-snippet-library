@@ -157,7 +157,7 @@ get_header();
 		$loop3 = new Give_Payments_Query( $args );
 		$loop3 = $loop3->get_payments();
 
-		if ( $loop2 ) {
+		if ( $loop3 ) {
 			?>
 			<h2>Output latest 3 donations with amount and names</h2>
 			<hr/>
