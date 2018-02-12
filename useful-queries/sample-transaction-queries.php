@@ -122,7 +122,6 @@ get_header();
 			<ul>
 				<?php
 				foreach ( $loop2 as $payment ) {
-					$meta    = give_get_meta( $payment->ID );
 					?>
 
 					<li><strong>Donation for $<?php echo esc_html( $payment->total ); ?></strong><br/>
@@ -150,54 +149,38 @@ get_header();
 		 *  with the name of the donor and the amount
 		 */
 
-		// Query 3 Arguments
-		$args3 = array(
-			'post_type'      => 'give_payment',
-			'posts_per_page' => 3,
+		// Query 2 Arguments
+		$args = array(
+			'number' => 3
 		);
 
-		$loop3 = new WP_Query( $args3 );
+		$loop3 = new Give_Payments_Query( $args );
+		$loop3 = $loop3->get_payments();
 
-		if ( $loop3->have_posts() ) : ?>
-
+		if ( $loop2 ) {
+			?>
 			<h2>Output latest 3 donations with amount and names</h2>
 			<hr/>
 			<ul>
 				<?php
-				/** Getting user data is a bit more complex
-				 *  Also keep in mind whether or not your donors
-				 *  actually WANT their names posted publicly.
-				 */
-
-				while ( $loop3->have_posts() ) : $loop3->the_post();
-
-					$meta = get_post_meta( get_the_ID() );
-					// Transaction have their own metadata; let's get it.
-					$paymentmeta = $meta['_give_payment_meta'];
-
-					// The metadata is serialized. Let's pull that apart.
-					$getmeta = maybe_unserialize( $paymentmeta[0] );
-
-					// Now that we've got it, we can define the name
-					$firstname = $getmeta['user_info']['first_name'];
-					$lastname  = $getmeta['user_info']['last_name'];
-
-					$total = $meta['_give_payment_total'][0];
+				foreach ( $loop3 as $payment ) {
 					?>
-
 					<li>
-						<strong>Thanks to <?php echo esc_html( $firstname . ' ' . $lastname ); ?></strong><br/>
-						For their generous gift of $<?php echo esc_html( $total ); ?><br/>
+						<strong>Thanks to <?php echo esc_html( $payment->first_name . ' ' . $payment->last_name ); ?></strong><br/>
+						For their generous gift of $<?php echo esc_html( $payment->total ); ?><br/>
 					</li>
-				<?php endwhile;
-				wp_reset_postdata(); // end of Query 1 ?>
+					<?php
+				}
+				?>
 			</ul>
-		<?php else : ?>
+			<?php
+		} else {
+			?>
 			<!-- If you don't have donations that fit this query -->
 			<h2>Sorry you don't have any transactions that fit this query</h2>
-
-		<?php endif;
-		wp_reset_query(); ?>
+			<?php
+		}
+		?>
 	</main>
 
 </div>
