@@ -10,7 +10,7 @@ function my123_give_remove_donor_notification( $payment_id ) {
 	//Remove these lines to stop triggering the admin notification.
 	$payment_data = give_get_payment_meta( $payment_id );
 
-	if ( ! give_admin_notices_disabled( $payment_id ) ) {
+	if ( give_is_setting_enabled( Give_Email_Notification::get_instance( 'new-donation' )->get_notification_status() ) ) {
 		do_action( 'give_admin_donation_email', $payment_id, $payment_data );
 	}
 
