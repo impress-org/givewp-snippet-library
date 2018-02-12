@@ -46,13 +46,17 @@ get_header();
 					<?php //you can output the content or excerpt here ?>
 
 					<?php
-					//Output the goal (if enabled)
-					$id          = get_the_ID();
-					$goal_option = get_post_meta( $id, '_give_goal_option', true );
-					if ( $goal_option == 'yes' ) {
-						$shortcode = '[give_goal id="' . $id . '"]';
-						echo do_shortcode( $shortcode );
-					} ?>
+
+					if ( class_exists( 'Give' ) ) {
+						//Output the goal (if enabled)
+						$id          = get_the_ID();
+						$goal_option = give_get_meta( $id, '_give_goal_option', true );
+
+						if ( give_is_setting_enabled( $goal_option ) ) {
+							echo do_shortcode( '[give_goal id="' . $id . '"]' );
+						}
+					}
+					?>
 
 					<a href="<?php echo get_permalink(); ?>" class="button readmore give-donation-form-link"><?php _e( 'Donate Now', 'give' ); ?> &raquo;</a>
 
