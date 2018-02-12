@@ -63,41 +63,39 @@ get_header();
 
 		// Query 1 Argument
 		$args = array(
-			'post_type'      => 'give_payment',
-			'posts_per_page' => 3
+			'number' => 3
 		);
 
-		$loop = new WP_Query( $args );
+		$payments = new Give_Payments_Query( $args );
+		$payments = $payments->get_payments();
 
-		if ( $loop->have_posts() ) : ?>
 
+		if ( $payments ) {
+			?>
 			<h2>Output latest 3 donations with amount and date</h2>
 			<hr/>
 			<ul>
 				<?php
-				while ( $loop->have_posts() ) : $loop->the_post();
-					$meta    = get_post_meta( get_the_ID() );
-					$total   = $meta['_give_payment_total'][0];
-					$getdate = $meta['_give_completed_date'][0];
-					$date    = date( "F j, Y", strtotime( $getdate ) );
-					$gateway = $meta['_give_payment_gateway'][0];
+				foreach ( $payments as $payment ) {
+					$meta    = give_get_meta( $payment->ID );
 					?>
 
-					<li><strong>Donation for $<?php echo esc_html( $total ); ?></strong><br/>
-						Was given on <?php echo esc_html( $date ); ?><br/>
-						With the <?php echo esc_html( $gateway ); ?> Payment Gateway
+					<li><strong>Donation for $<?php echo esc_html( $payment->total ); ?></strong><br/>
+						Was given on <?php echo esc_html( date( "F j, Y", strtotime( $payment->date ) ) ); ?><br/>
+						With the <?php echo esc_html( $payment->gateway ); ?> Payment Gateway
 					</li>
-
-				<?php endwhile;
-				wp_reset_postdata(); // end of Query 1 ?>
+					<?php
+				}
+				?>
 			</ul>
-		<?php else : ?>
+			<?php
+		} else {
+			?>
 			<!-- If you don't have donations that fit this query -->
-
 			<h2>Sorry you don't have any transactions that fit this query</h2>
-
-		<?php endif;
-		wp_reset_query(); ?>
+			<?php
+		}
+		?>
 
 		<?php
 		/**
