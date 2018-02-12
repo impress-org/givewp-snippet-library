@@ -33,17 +33,25 @@ get_header();
 		$testing = false;
 
 		if ( $testing == true ) {
-			$testquery = new WP_Query( array( 'post_type' => 'give_payment', 'post_count' => 1 ) );
-			$firstpost = $testquery->posts;
-			$meta      = get_post_meta( $firstpost[0]->ID );
+			$testquery = new Give_Payments_Query( array( 'number' => 1 ) );
+			$payments       = $testquery->get_payments();
 
-			?>
-			<div style="background: #555; color: white; padding: 2rem;">
-				<h3>Test Data</h3>
-				<p>The following outputs all the "give_payment" fields for you to reference in building out your donation list</p>
-				<p><?php var_dump( $meta ); ?></p>
-			</div>
-		<?php } // end testing ?>
+			if ( $payments ) {
+				foreach ( $payments as $payment ) {
+					$meta = give_get_meta( $payment->ID );
+					?>
+					<div style="background: #555; color: white; padding: 2rem;">
+						<h3>Test Data</h3>
+						<p>The following outputs all the "give_payment" fields for you to reference in building out your
+							donation list</p>
+						<p><?php var_dump( $meta ); ?></p>
+					</div>
+					<?php
+				}
+			}
+		}
+		// end testing
+		?>
 
 		<?php
 		/**
