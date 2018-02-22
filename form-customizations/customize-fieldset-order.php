@@ -17,10 +17,10 @@ add_action( 'init', 'give_remove_fieldsets' );
 
 /* Add all Give Fieldsets */
 function give_reorder_fieldsets() {
-    add_action( 'give_checkout_form_top', 'give_user_info_fields' );
-    add_action( 'give_checkout_form_top', 'give_output_donation_amount_top' );
-    add_action( 'give_checkout_form_top', 'give_payment_mode_select' );
-    add_action( 'give_checkout_form_top', 'give_checkout_submit' );
+    add_action( 'give_donation_form_top', 'give_user_info_fields' );
+    add_action( 'give_donation_form_top', 'give_output_donation_amount_top' );
+    add_action( 'give_donation_form_top', 'give_payment_mode_select' );
+    add_action( 'give_donation_form_top', 'give_checkout_submit' );
 }
 
 add_action( 'init', 'give_reorder_fieldsets' );
