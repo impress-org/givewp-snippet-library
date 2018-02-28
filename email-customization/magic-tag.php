@@ -46,7 +46,7 @@ function rum_wohh_get_wohh_magic_tag_data( $tag_args ) {
 	$output       = '';
 
 	// Check if this payment's donation form ID matches the donation form we want custom email body copy
-	if ( $form_id == '1650' ) {   // Online Donation form
+	if ( $form_id === '1650' ) {   // Online Donation form
 
 		// get the custom field data for this donation.
 		if ( ! empty( $meta_values['_give_payment_date'][0] ) ) {
