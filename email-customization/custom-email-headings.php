@@ -4,24 +4,23 @@
  *
  * Use this snippet to update the donation email's main headings; for instance "New Donation!", etc.
  *
- * @param $message
- * @param $email_obj
+ * @param string $heading Email Heading.
+ *
+ * @return string
  */
-function my_custom_give_email_headings( $message ) {
+function my_custom_give_email_headings( $heading ) {
 
-	switch ( $message ) {
+	switch ( $heading ) {
 
 		case 'New Donation!':
-			$message = 'Boom! New Donation';
+			$heading = __( 'Boom! New Donation', 'give-snippet' );
 			break;
 		case 'Donation Receipt':
-			$message = 'Your Donation Receipt';
+			$heading = __( 'Your Donation Receipt', 'give-snippet' );
 			break;
-
 	}
 
-	return $message;
+	return $heading;
 
 }
-
 add_filter( 'give_email_heading', 'my_custom_give_email_headings', 10, 1 );
