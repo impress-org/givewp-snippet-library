@@ -33,6 +33,8 @@ add_filter( 'give_email_tags', 'rum_wohh_add_magic_tag' );
  */
 function rum_wohh_get_wohh_magic_tag_data( $tag_args ) {
 
+	$payment_id = 0;
+
 	switch ( true ) {
 		case give_check_variable( $tag_args, 'isset', 0, 'payment_id' ):
 			$payment    = new Give_Payment( $tag_args['payment_id'] );
