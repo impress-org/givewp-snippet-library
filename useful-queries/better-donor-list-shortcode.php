@@ -19,71 +19,74 @@ function give_donor_list_shortcode_function_example( $atts ) {
 
 	$atts = shortcode_atts( array(
 		'number'  => 30,
-		'form_id' => '',
+		'form_id' => null,
 		'heading' => 'We\'d like to thank the following gracious donors:',
 	), $atts, 'my_donor_list' );
 
 	$args = array(
 		'output' => 'payments',
 		'number' => $atts['number'],
+		'status' => 'publish',
+        'give_forms' => $atts['form_id'],
+
 	);
 
 	$payments = new Give_Payments_Query( $args );
 	$payments = $payments->get_payments();
 
 	if ( $payments ) : ?>
-		<style>
-			/* Flex grid */
-			ul {
-				margin: 0;
-				padding: 0;
-				display: flex;
-				flex-wrap: wrap;
-			}
+        <style>
+            /* Flex grid */
+            ul {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-wrap: wrap;
+            }
 
-			ul.my-give-donor-wall li {
-				list-style-type: none;
-				display: flex;
-				padding: 0.5em;
-				width: 100%;
-			}
+            ul.my-give-donor-wall li {
+                list-style-type: none;
+                display: flex;
+                padding: 0.5em;
+                width: 100%;
+            }
 
-			@media all and (min-width: 40em) {
-				ul.my-give-donor-wall li {
-					width: 50%;
-				}
-			}
+            @media all and (min-width: 40em) {
+                ul.my-give-donor-wall li {
+                    width: 50%;
+                }
+            }
 
-			@media all and (min-width: 60em) {
-				ul.my-give-donor-wall li {
-					width: 33.33%;
-				}
-			}
+            @media all and (min-width: 60em) {
+                ul.my-give-donor-wall li {
+                    width: 33.33%;
+                }
+            }
 
-			/* List content */
-			.my-give-donorwall-donor {
-				text-align: center;
-				background-color: #fff;
-				display: flex;
-				flex-direction: column;
-				padding: 1em;
-				width: 100%;
-			}
+            /* List content */
+            .my-give-donorwall-donor {
+                text-align: center;
+                background-color: #fff;
+                display: flex;
+                flex-direction: column;
+                padding: 1em;
+                width: 100%;
+            }
 
-			/* Avatar */
-			ul.my-give-donor-wall .my-give-donorwall-avatar {
-				display: block;
-				margin: 0 auto;
-				text-align: center;
-			}
+            /* Avatar */
+            ul.my-give-donor-wall .my-give-donorwall-avatar {
+                display: block;
+                margin: 0 auto;
+                text-align: center;
+            }
 
-			ul.my-give-donor-wall .my-give-donorwall-avatar img {
-				border-radius: 50%;
-			}
-		</style>
-		<h2><?php echo esc_html( $atts['heading'] ); ?></h2>
-		<hr />
-		<ul class="my-give-donor-wall">
+            ul.my-give-donor-wall .my-give-donorwall-avatar img {
+                border-radius: 50%;
+            }
+        </style>
+        <h2><?php echo esc_html( $atts['heading'] ); ?></h2>
+        <hr />
+        <ul class="my-give-donor-wall">
 			<?php
 			/**
 			 * Loop through individual payments.
@@ -97,19 +100,19 @@ function give_donor_list_shortcode_function_example( $atts ) {
 				$total  = give_donation_amount( $payment->ID, array( 'currency' => true ) );
 				$avatar = get_avatar( $payment->email, 64 );
 				?>
-				<li>
-					<div class="my-give-donorwall-donor">
-						<span class="my-give-donorwall-avatar"><?php echo $avatar; ?></span>
-						<span class="my-give-donorwall-name"><?php echo esc_html( $first_name . ' ' . $last_name ); ?></span> <span
-								class="my-give-donorwall-total"><?php echo $total;
+                <li>
+                    <div class="my-give-donorwall-donor">
+                        <span class="my-give-donorwall-avatar"><?php echo $avatar; ?></span>
+                        <span class="my-give-donorwall-name"><?php echo esc_html( $first_name . ' ' . $last_name ); ?></span> <span
+                                class="my-give-donorwall-total"><?php echo $total;
 							?></span>
-					</div>
-				</li>
+                    </div>
+                </li>
 			<?php endforeach; ?>
-		</ul>
+        </ul>
 	<?php else : ?>
-		<!-- If you don't have donations that fit this query -->
-		<h2>Sorry you don't have any donation payments that fit this query</h2>
+        <!-- If you don't have donations that fit this query -->
+        <h2>Sorry you don't have any donation payments that fit this query</h2>
 
 	<?php endif;
 
