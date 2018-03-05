@@ -49,3 +49,17 @@ function give_mysite_dequque_posttype_script() {
 }
 
 add_action( 'wp_print_scripts', 'give_mysite_dequque_posttype_script', 100 );
+
+/**
+ * Dequeue Stripe JS just on certain Page IDs
+ */
+function conditional_remove_give_stripe_js() {
+	
+	// Check Page IDs to exclude
+	if ( is_page( array(2,3) ) ) {
+		wp_deregister_script( 'give-stripe-js' );
+	}
+
+}
+
+add_action('wp_print_scripts', 'conditional_remove_give_stripe_js', 101);

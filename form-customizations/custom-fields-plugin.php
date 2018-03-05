@@ -95,7 +95,7 @@ add_filter( 'give_donation_form_required_fields', 'myprefix123_give_donations_re
 function myprefix123_give_donations_save_custom_fields( $payment_id, $payment_data ) {
 
 	if ( isset( $_POST['give_engraving_message'] ) ) {
-		$message = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['give_engraving_message'] ) ) );
+		$message = wp_strip_all_tags( $_POST['give_engraving_message'], true );
 		add_post_meta( $payment_id, 'give_engraving_message', $message );
 	}
 
@@ -163,7 +163,7 @@ function my_custom_prefix_get_donation_referral_data( $tag_args ) {
 	$output = __( 'No referral data found.', 'give' );
 
 	if ( ! empty( $engraving_message ) ) {
-		$output = wpautop( $engraving_message );
+		$output = wp_kses_post( $engraving_message );
 	}
 
 	return $output;

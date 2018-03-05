@@ -1,41 +1,55 @@
 <?php
 /**
  *  Shortcode to list recent donors
+ *
+ * Mint Give Core Version 2.0
  */
 function give_basic_recent_donors_function() {
 
+	// get total number of donor in the DB.
+	$total_donors  = absint( Give()->donors->count() );
+	$number        = 100;
+	$less_then_100 = false;
+
+	if ( $total_donors < 100 ) {
+		$number        = $total_donors;
+		$less_then_100 = true;
+	}
+
 	// Get the latest 100 Give Donors
 	$args = array(
-		'number' => 100,
+		'number' => $number,
 	);
 
-	$donors = Give()->customers->get_customers( $args );
+	$donors = Give()->donors->get_donors( $args );
 
-	$output = '';
+	$output = array();
 
 	foreach ( $donors as $donor ) {
 
-		$output = $donor->name . ', ';
-		// First and Last Name
-		$name = $donor->name;
+		// Create Donor Object.
+		$donor = new Give_Donor( $donor->id );
 
-		// Split up the names
-		$separate = explode( ' ', $name );
+		// Get First Name.
+		$first_name = $donor->get_first_name();
 
-		// find the surname
-		$last = array_pop( $separate );
+		// Get Last Name Initial Letter.
+		$last_name = $donor->get_last_name();
 
-		// Shorten up the name so it's Jason T.  instead of Jason Tucker
-		$shortenedname = implode( ' ', $separate ) . ' ' . $last[0] . '.';
-
-		// Display the Jason T. and include a , after it.
-		$output .= $shortenedname . ', ';
+		// Prepare Output.
+		$output[] = "{$first_name} {$last_name}";
 
 	}
-	$output .= ' and many more.';
+
+	$output = implode( ', ', $output );
+
+
+	if ( ! empty( $output ) && empty( $less_then_100 ) ) {
+		$output .= __( ' and many more.', 'give' );
+	}
 
 	return $output;
 
 }
 
-add_shortcode( 'donor_list', 'recent_donors_function' );
+add_shortcode( 'donor_list', 'give_basic_recent_donors_function' );

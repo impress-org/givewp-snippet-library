@@ -62,7 +62,7 @@ function give_tickets_form_add_incrementer( $form_id ) {
 		<?php
 		$output = ob_get_clean();
 
-		echo wp_kses_post( $output );
+		echo $output;
 	}
 }
 

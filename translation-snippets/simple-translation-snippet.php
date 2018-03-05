@@ -16,8 +16,8 @@ function my_give_text_switcher( $translations, $text, $domain ) {
 
 	// changes the "Make this Donation [monthly/weekly/daily]"
 	// text for a donor's choice recurring checkbox
-	if ( $domain == 'give-recurring' && $translations == 'Make this Donation' ) {
-		$translations = __( 'YOUR TEXT HERE', 'give-recurring' );
+	if ( $domain == 'give-recurring' && $translations == 'Make this donation %1$s' ) {
+		$translations = __( 'YOUR TEXT HERE %1$s', 'give-recurring' );
 	}
 
 	return $translations;
