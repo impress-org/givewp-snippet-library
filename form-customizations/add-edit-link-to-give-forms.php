@@ -10,6 +10,6 @@ add_action('give_post_form_output', 'give_add_edit_form_link');
 function give_add_edit_form_link() {
 
     if (current_user_can('edit_give_forms') && is_singular('give_forms')) {
-	   echo edit_post_link('Edit this donation form', '<p>', '</p>');
+	   edit_post_link('Edit this donation form', '<p>', '</p>');
     }
 }
