@@ -1,10 +1,7 @@
 <?php
-
 /**
  *  Check the Donor Opt-in checkbox in Give Fee Recovery automatically
- * 
  */
- 
 function my_give_focus_custom_amount() { ?>
     <script>
         jQuery('input.give_fee_mode_checkbox').prop('checked', true);
