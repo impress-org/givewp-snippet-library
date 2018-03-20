@@ -110,9 +110,9 @@ add_action( 'give_insert_payment', 'myprefix123_give_donations_save_custom_field
  *
  * @param $payment_id
  */
-function myprefix123_give_donations_purchase_details( $payment_id ) {
+function myprefix123_give_donations_donation_details( $payment_id ) {
 
-	$engraving_message = get_post_meta( $payment_id, 'give_engraving_message', true );
+	$engraving_message = give_get_meta( $payment_id, 'give_engraving_message', true );
 
 	if ( $engraving_message ) : ?>
 
@@ -127,7 +127,7 @@ function myprefix123_give_donations_purchase_details( $payment_id ) {
 
 }
 
-add_action( 'give_view_order_details_billing_before', 'myprefix123_give_donations_purchase_details', 10, 1 );
+add_action( 'give_view_order_details_billing_before', 'myprefix123_give_donations_donation_details', 10, 1 );
 
 /**
  * Adds a Custom "Engraved Message" Tag
@@ -158,7 +158,7 @@ add_action( 'give_add_email_tags', 'my_custom_prefix_add_sample_referral_tag' );
  */
 function my_custom_prefix_get_donation_referral_data( $tag_args ) {
 
-	$engraving_message = get_post_meta( $tag_args['payment_id'], 'give_engraving_message', true );
+	$engraving_message = give_get_meta( $tag_args['payment_id'], 'give_engraving_message', true );
 
 	$output = __( 'No referral data found.', 'give' );
 
