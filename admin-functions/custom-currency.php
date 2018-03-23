@@ -29,10 +29,15 @@
  * @return mixed
  */
 function my_give_add_costarican_currency( $currencies ) {
-
-	$currencies['CRC'] = array(
-		'admin_label' => __( 'Costa Rican Col&oacute;n (&#8353;)', 'give' ),
-		'symbol'      => '&#8353;',
+	$currencies['VND'] = array(
+		'admin_label' => __( 'Vietnamese đồng (₫)', 'give' ),
+		'symbol'      => '&#8363;',
+		'setting'     => array(
+			'currency_position'   => 'after',
+			'thousands_separator' => '.',
+			'decimal_separator'   => ',',
+			'number_decimals'     => 2,
+		),
 	);
 
 	return $currencies;
