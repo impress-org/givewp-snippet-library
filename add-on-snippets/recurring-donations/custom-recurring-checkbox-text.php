@@ -4,29 +4,40 @@
  *
  * Important - rename this function so it's unique to avoid conflicts.
  *
- * This function allows admins to customize the checkbox text that is presented to donors to opt-in to recurring donations
+ * Requires Recurring Donations version 1.6+.
  *
- * @param $default_text
- * @param $period
- * @param $times
+ * This function allows admins to customize the checkbox text that is presented to donors to opt-in to recurring donations.
+ *
+ * @param string $default_text
+ * @param string $period
+ * @param int $times
+ * @param string $show_period
+ * @param int $form_id
  *
  * @return string
  */
-function my_customize_recurring_checkbox_text($default_text, $period, $times){
+function my_customize_recurring_checkbox_text( $default_text, $period, $times, $show_period, $form_id ) {
 
-	//Use function to get nice subscription frequency
-	$pretty_period = give_recurring_pretty_subscription_frequency( $period, $times );
+// Customize the default text
+// Uncomment the chosen customization below:
+// Example 1: "Make this Donation Recurring Monthly
+	$period_functionality = give_get_meta( $form_id, '_give_period_functionality', true );
 
-	//Customize the default text
-	//Uncomment the chosen customization below:
-	//Example 1: "Make this Donation Recurring Monthly
-//	$default_text = __('Make this Donation Recurring') . ' ' . $pretty_period;
+	$show_period = ( 'donors_choice' === $period_functionality ? give_recurring_donors_choice_period_element( $form_id ) : give_recurring_pretty_subscription_frequency( $period, $times, true ) );
 
-	//Example 2: "Monthly Recurring Donation"
-	$default_text = $pretty_period . ' ' . __('Recurring Donation');
+// Example 1: Donor's Choice Period (select field on form w/ periods).
+	$default_text_example_1 = sprintf(
+		esc_html__( 'I\'d like to make this donation %1$s', 'give-recurring' ),
+		$show_period
+	);
 
-	return $default_text;
+//Example 2: Preset period "Monthly Recurring Donation"
+	$default_text_example_2 = __( 'Monthly Recurring Donation', 'give-recurring' );
+
+// Return either variable from above depending on your configuration.
+	return $default_text_example_1;
 
 }
 
-add_filter('give_recurring_output_donors_choice_text', 'my_customize_recurring_checkbox_text', 10, 3 );
+add_filter( 'give_recurring_output_donors_choice_text', 'my_customize_recurring_checkbox_text', 10, 5 );
+
