@@ -19,7 +19,7 @@
  */
 
 /**
- * Adds Costa Rican Colon currency to your Give settings
+ * Adds Vietnamese đồng currency to your Give settings
  * it's required Give minimum Version 1.8.15
  *
  * @since 1.8.15
