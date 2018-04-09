@@ -18,6 +18,9 @@ function my_custom_give_email_headings( $heading ) {
 		case 'Donation Receipt':
 			$heading = __( 'Your Donation Receipt', 'give-snippet' );
 			break;
+		case 'Offline Donation Instructions':
+            		$heading = __( 'Offline Contribution Instructions', 'give-snippet' );
+            		break;
 	}
 
 	return $heading;
