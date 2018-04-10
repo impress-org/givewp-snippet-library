@@ -1,5 +1,13 @@
 <?php
 /**
+ * Set a custom currency programmatically per donation form.
+ *
+ * WARNING: The follow snippet does not take into account reporting.
+ *
+ * All your reports will still assume there is one currency set globally. In order to have reports with one or more currencies per form you will need to install the Currency Switcher add-on.
+ */
+
+/**
  * Set a custom currency for only a single donation form.
  *
  * @param int $donation_or_form_id
@@ -21,7 +29,7 @@ function myprefix_give_per_form_currency( $currency, $donation_or_form_id, $args
 
 		add_filter( 'give_get_currency_formatting_settings', 'myprefix_give_customer_currency_formatting', 10, 1 );
 		return 'EUR';
-		
+
 	}
 
 
