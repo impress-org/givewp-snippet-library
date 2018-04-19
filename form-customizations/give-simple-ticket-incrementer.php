@@ -103,4 +103,4 @@ function give_tickets_ticket_amount_donation_meta( $payment_id ) {
 	<?php endif;
 }
 
-add_action( 'give_view_order_details_billing_before', 'give_tickets_ticket_amount_donation_meta', 10, 2 );
+add_action( 'give_view_donation_details_billing_before', 'give_tickets_ticket_amount_donation_meta', 10, 2 );

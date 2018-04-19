@@ -233,7 +233,7 @@ function myprefix123_give_mailing_fields_donation_details( $payment_id ) {
 	<?php endif;
 }
 
-add_action( 'give_view_order_details_billing_before', 'myprefix123_give_mailing_fields_donation_details', 10, 1 );
+add_action( 'give_view_donation_details_billing_before', 'myprefix123_give_mailing_fields_donation_details', 10, 1 );
 
 /**
  * Adds a Custom Email Tag

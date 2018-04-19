@@ -127,7 +127,7 @@ function myprefix123_give_donations_donation_details( $payment_id ) {
 
 }
 
-add_action( 'give_view_order_details_billing_before', 'myprefix123_give_donations_donation_details', 10, 1 );
+add_action( 'give_view_donation_details_billing_before', 'myprefix123_give_donations_donation_details', 10, 1 );
 
 /**
  * Adds a Custom "Engraved Message" Tag
