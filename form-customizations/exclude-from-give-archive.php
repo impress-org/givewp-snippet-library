@@ -1,6 +1,7 @@
 <?php
 /**
- *  Exclude some Give Forms from the Give Archive page. Add form IDs in the array on line 14 (currently 1,13,266)
+ *  Exclude some Give Forms from the Give Archive page or the [give_form_grid] shortcode output. 
+ *  Add form IDs in the array on line 15 (example shows '1,13,266')
  */
 
 function my_custom_get_posts( $query ) {
