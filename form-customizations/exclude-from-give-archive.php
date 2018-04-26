@@ -3,7 +3,7 @@
  *  Exclude some Give Forms from the Give Archive page
  */
 function my_custom_get_posts( $query ) {
-	if ( is_admin() || ! $query->is_main_query() ) {
+	if ( is_admin() ) {
 		return;
 	}
 
