@@ -2,6 +2,7 @@
 /**
  * This template is used to display the donation grid with [give_form_grid]
  * This template is customized to display the form categories
+ * See here for details: https://givewp.com/how-to-use-donation-form-grid/
  */
 
 // Exit if accessed directly.
