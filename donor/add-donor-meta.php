@@ -51,7 +51,8 @@ function give_required_donor_phone_form_field( $required_fields, $form_id ){
 add_action( 'give_donation_form_required_fields', 'give_required_donor_phone_form_field', 10, 2 );
 
 /**
- * Save phone number to donation meta
+ * Save phone number to donation and donor meta
+ * Note: donor phone will update in donor meta if donor changes there phone number.
  *
  * @param $donation_id
  */
@@ -60,10 +61,13 @@ function give_save_donor_phone_number( $donation_id ){
 	$new_phone_number = give_clean( $_POST['give_phone'] );
 	$phone_numbers = Give()->donor_meta->get_meta( $donor_id, 'give_phone' );
 
-	// Add phone number only if not exist.
+	// Add phone number to donor meta only if not exist.
 	if( ! in_array( $new_phone_number, $phone_numbers ) ) {
 		Give()->donor_meta->add_meta( $donor_id, 'give_phone', $new_phone_number  );
 	}
+
+	// Save phone number to donation meta.
+	Give()->payment_meta->update_meta( $donation_id, '_give_phone', $new_phone_number );
 }
 add_action( 'give_insert_payment', 'give_save_donor_phone_number', 10 );
 
