@@ -10,8 +10,8 @@
 /**
  * Set a custom currency for only a single donation form.
  *
- * @param int $donation_or_form_id
- * @param     $args
+ * @param integer $donation_or_form_id Donation ID or Form ID.
+ * @param  array  $args                Additional argument.
  *
  * @return string The currency symbol
  */
@@ -62,8 +62,7 @@ add_filter( 'give_pre_insert_payment', 'myprefix_give_pre_insert_payment', 10, 1
 
 
 /**
- *
- * @param $id_or_currency_code
+ * @param string $id_or_currency_code Currency Code.
  *
  * @return array
  */
