@@ -18,24 +18,28 @@
 function myprefix_give_per_form_currency( $currency, $donation_or_form_id, $args ) {
 
 	// Update form ID here to match your form ID.
-	$form_id = 12;
+	$form_id = 28;
 
 	// Make sure this is a donation form, not a donation payment.
 	if (
 		is_numeric( $donation_or_form_id )
 		&& 'give_forms' === get_post_type( $donation_or_form_id )
-		&&  $form_id === $donation_or_form_id
+		&& $form_id === $donation_or_form_id
 	) {
-
 		add_filter( 'give_get_currency_formatting_settings', 'myprefix_give_customer_currency_formatting', 10, 1 );
-		return 'EUR';
 
+		return 'EUR';
 	}
 
-
-	if ( give_is_success_page()  ) {
-
+	if ( give_is_success_page() ) {
 		add_filter( 'give_get_currency_formatting_settings', 'myprefix_give_customer_currency_formatting', 10, 1 );
+	}
+
+	return $currency;
+}
+
+add_filter( 'give_currency', 'myprefix_give_per_form_currency', 10, 3 );
+
 /**
  * Change currency when processing the payment.
  *
@@ -47,7 +51,6 @@ function myprefix_give_pre_insert_payment( $payment_data ) {
 	// Replace it with your form ID.
 	$form_id = 28;
 
-	}
 	// Replace it with your form currency.
 	$form_currency = 'EUR';
 
@@ -57,7 +60,6 @@ function myprefix_give_pre_insert_payment( $payment_data ) {
 	return $payment_data;
 }
 
-add_filter( 'give_currency', 'myprefix_give_per_form_currency', 10, 3 );
 add_filter( 'give_pre_insert_payment', 'myprefix_give_pre_insert_payment', 10, 1 );
 
 
@@ -67,13 +69,10 @@ add_filter( 'give_pre_insert_payment', 'myprefix_give_pre_insert_payment', 10, 1
  * @return array
  */
 function myprefix_give_customer_currency_formatting( $id_or_currency_code ) {
-
 	return array(
 		'currency_position'   => 'before',
 		'thousands_separator' => ',',
 		'decimal_separator'   => '.',
 		'number_decimals'     => 2,
 	);
-
 }
-
