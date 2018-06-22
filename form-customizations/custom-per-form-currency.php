@@ -36,12 +36,29 @@ function myprefix_give_per_form_currency( $currency, $donation_or_form_id, $args
 	if ( give_is_success_page()  ) {
 
 		add_filter( 'give_get_currency_formatting_settings', 'myprefix_give_customer_currency_formatting', 10, 1 );
+/**
+ * Change currency when processing the payment.
+ *
+ * @param array $payment_data Posted payment data.
+ *
+ * @return mixed
+ */
+function myprefix_give_pre_insert_payment( $payment_data ) {
+	// Replace it with your form ID.
+	$form_id = 28;
 
 	}
+	// Replace it with your form currency.
+	$form_currency = 'EUR';
 
+	// Change the form id and currency as per your requirement.
+	$payment_data['currency'] = $form_id === $payment_data['give_form_id'] ? $form_currency : $payment_data['currency'];
+
+	return $payment_data;
 }
 
 add_filter( 'give_currency', 'myprefix_give_per_form_currency', 10, 3 );
+add_filter( 'give_pre_insert_payment', 'myprefix_give_pre_insert_payment', 10, 1 );
 
 
 /**
