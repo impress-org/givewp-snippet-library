@@ -27,13 +27,7 @@ function myprefix_give_per_form_currency( $currency, $donation_or_form_id, $args
 		'give_forms' === get_post_type( $donation_or_form_id )
 		&& $form_id === absint( $donation_or_form_id )
 	) {
-		add_filter( 'give_get_currency_formatting_settings', 'myprefix_give_customer_currency_formatting', 10, 1 );
-
 		return 'EUR';
-	}
-
-	if ( give_is_success_page() ) {
-		add_filter( 'give_get_currency_formatting_settings', 'myprefix_give_customer_currency_formatting', 10, 1 );
 	}
 
 	return $currency;
@@ -61,18 +55,3 @@ function myprefix_give_pre_insert_payment( $payment_data ) {
 }
 
 add_filter( 'give_pre_insert_payment', 'myprefix_give_pre_insert_payment', 10, 1 );
-
-
-/**
- * @param string $id_or_currency_code Currency Code.
- *
- * @return array
- */
-function myprefix_give_customer_currency_formatting( $id_or_currency_code ) {
-	return array(
-		'currency_position'   => 'before',
-		'thousands_separator' => ',',
-		'decimal_separator'   => '.',
-		'number_decimals'     => 2,
-	);
-}
