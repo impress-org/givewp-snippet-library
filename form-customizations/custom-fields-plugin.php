@@ -191,8 +191,6 @@ class Give_Add_Custom_fields_in_Form {
 	 * @params int      $donation_id
 	 * @params int      $form_id
 	 *
-	 * @since  1.8.8
-	 *
 	 * @return array
 	 */
 	function receipt_args( $args, $donation_id, $form_id ) {
@@ -227,6 +225,10 @@ class Give_Add_Custom_fields_in_Form {
 
 	/**
 	 * Add Donation engraving message header in CSV.
+	 *
+	 * @param array $cols columns name for CSV
+	 *
+	 * @return  array $cols columns name for CSV
 	 */
 	function update_columns_heading( $cols ) {
 		if ( isset( $cols[ $this->key ] ) ) {
@@ -256,7 +258,7 @@ class Give_Add_Custom_fields_in_Form {
 	}
 
 	/**
-	 * Export donation standard fields.
+	 * Remove Custom meta fields from Export donation standard fields.
 	 *
 	 * @param array $responses Contain all the fields that need to be display when donation form is display
 	 * @param int $form_id Donation Form ID
