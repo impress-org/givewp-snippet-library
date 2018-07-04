@@ -24,7 +24,7 @@
  */
 
 
-class Give_Add_Custom_fields_in_Form {
+class Give_Add_Custom_fields {
 
 	/**
 	 * Custom meta key
@@ -279,4 +279,4 @@ class Give_Add_Custom_fields_in_Form {
 }
 
 
-new Give_Add_Custom_fields_in_Form();
+new Give_Add_Custom_fields();
