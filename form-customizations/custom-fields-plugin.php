@@ -28,7 +28,7 @@
  *
  * @param $form_id
  */
-function myprefix123_give_after_donation_levels( $form_id ) {
+function myprefix123_give_donations_custom_form_fields( $form_id ) {
 
 	// Only display for forms with the IDs "754" and "578";
 	// Remove "If" statement to display on all forms
@@ -38,7 +38,7 @@ function myprefix123_give_after_donation_levels( $form_id ) {
 	if ( in_array( $form_id, $forms ) ) {
 		?>
 		<div id="give-message-wrap" class="form-row form-row-wide">
-			<label class="give-label" for="give_engraving_message">
+			<label class="give-label" for="give-engraving-message">
 				<?php _e( 'What should be engraved on the plaque?', 'give' ); ?>
 				<?php if ( give_field_is_required( 'give_engraving_message', $form_id ) ) : ?>
 					<span class="give-required-indicator">*</span>
@@ -48,13 +48,13 @@ function myprefix123_give_after_donation_levels( $form_id ) {
 				</span>
 			</label>
 
-			<textarea class="give-textarea" name="give_engraving_message" id="give_engraving_message"></textarea>
+			<textarea class="give-textarea" name="give_engraving_message" id="give-engraving-message"></textarea>
 		</div>
 		<?php
 	}
 }
 
-add_action( 'give_after_donation_levels', 'myprefix123_give_after_donation_levels' );
+add_action( 'give_after_donation_levels', 'myprefix123_give_donations_custom_form_fields' );
 
 /**
  * Require custom field "Engraving message" field.
@@ -117,7 +117,7 @@ function myprefix123_give_donations_donation_details( $payment_id ) {
 
 	if ( $engraving_message ) : ?>
 
-		<div id="<?php echo 'give_engraving_message'; ?>" class="postbox">
+		<div id="give-engraving-message" class="postbox">
 			<h3 class="hndle"><?php esc_html_e( 'Engraving Message', 'give' ); ?></h3>
 			<div class="inside" style="padding-bottom:10px;">
 				<?php echo wpautop( $engraving_message ); ?>
@@ -202,10 +202,10 @@ add_filter( 'give_donation_receipt_args', 'myprefix123_donation_receipt_args', 3
 function myprefix123_donation_standard_donor_fields() {
 	?>
 	<li>
-		<label for="<?php echo 'give_engraving_message'; ?>">
+		<label for="give-engraving-message">
 			<input type="checkbox" checked
 			       name="give_give_donations_export_option[<?php echo 'give_engraving_message'; ?>]"
-			       id="<?php echo 'give_engraving_message'; ?>"><?php _e( 'Engraved Message', 'give' ); ?>
+			       id="give-engraving-message"><?php _e( 'Engraved Message', 'give' ); ?>
 		</label>
 	</li>
 	<?php
