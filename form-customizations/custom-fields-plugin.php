@@ -204,7 +204,7 @@ function myprefix123_donation_standard_donor_fields() {
 	<li>
 		<label for="give-engraving-message">
 			<input type="checkbox" checked
-			       name="give_give_donations_export_option[<?php echo 'give_engraving_message'; ?>]"
+			       name="give_give_donations_export_option['give_engraving_message']"
 			       id="give-engraving-message"><?php _e( 'Engraved Message', 'give' ); ?>
 		</label>
 	</li>
