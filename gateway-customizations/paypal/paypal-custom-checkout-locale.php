@@ -9,12 +9,12 @@
  *
  * @return mixed
  */
-function give_customize_paypal_standard_checkout_language( $paypal_args, $donation_data ) {
+function give_customize_paypal_standard_checkout_language( $paypal_args, $payment_data ) {
 
-	$paypal_args['lc'] = 'CN';
+	$paypal_args['lc'] = 'pt_BR';
 
 	return $paypal_args;
 
 }
 
-add_filter( 'give_paypal_redirect_args', 'give_customize_paypal_standard_checkout_language', 10, 2 );
+add_filter( 'give_paypal_redirect_args', 'give_customize_paypal_standard_checkout_language', 99, 2 );
