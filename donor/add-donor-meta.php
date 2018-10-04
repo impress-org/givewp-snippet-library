@@ -97,3 +97,35 @@ function give_show_donor_phone_numbers( $donor ) {
 	<?php
 }
 add_action( 'give_donor_before_address', 'give_show_donor_phone_numbers' );
+
+/**
+ * This function will add a new custom field to export.
+ *
+ * @param array $default_columns List of default columns.
+ *
+ * @return array
+ */
+function give_add_custom_column_to_export_donor( $default_columns ) {
+
+	$default_columns['phone_number'] = esc_html__( 'Phone Number', 'give' );
+
+	return $default_columns;
+}
+add_filter( 'give_export_donors_get_default_columns', 'give_add_custom_column_to_export_donor' );
+
+/**
+ * This function will be used to set the value of new custom field which will be displayed in exported CSV.
+ *
+ * @param array      $data  List of data which is displayed in exported CSV.
+ * @param Give_Donor $donor Donor Object.
+ *
+ * @return mixed
+ */
+function give_export_set_custom_donor_data( $data, $donor ) {
+
+	$phone_number         = Give()->donor_meta->get_meta( $donor->id, 'give_phone', true );
+	$data['phone_number'] = ! empty( $phone_number ) ? $phone_number : '- N/A - ';
+
+	return $data;
+}
+add_filter( 'give_export_set_donor_data', 'give_export_set_custom_donor_data', 10, 2 );
