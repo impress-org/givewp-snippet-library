@@ -18,46 +18,52 @@
  */
 
 
-add_action( 'give_after_donation_amount', 'give_tickets_form_add_incrementer' );
+add_action( 'give_after_donation_amount', 'give_tickets_form_add_incrementer', 10, 2 );
 
-function give_tickets_form_add_incrementer( $form_id ) {
+function give_tickets_form_add_incrementer( $form_id, $args ) {
+
+	$id_prefix = ! empty( $args['id_prefix'] ) ? $args['id_prefix'] : 0;
 
 	// STEP 6: Set your form ID here
 	$forms = array( 89, 88 );
 
-	if ( in_array( $form_id, $forms ) ) {
+	if ( in_array( $form_id, $forms, true ) ) {
 
 		ob_start(); ?>
 
-        <p id="give-ticket-wrap" class="form-row form-row-wide js-give-ticket-wrap">
-            <label class="give-label" for="give-ticket-number">
-                Number of tickets <span class="give-required-indicator">*</span>
-                <span class="give-tooltip give-icon give-icon-question"
-                      data-tooltip="Choose the number of tickets you would like."></span>
-            </label>
+		<p id="give-ticket-wrap-<?php echo $id_prefix;?>" class="form-row form-row-wide js-give-ticket-wrap">
+			<label class="give-label" for="give-ticket-number">
+				Number of tickets <span class="give-required-indicator">*</span>
+				<span class="give-tooltip give-icon give-icon-question"
+						data-tooltip="Choose the number of tickets you would like."></span>
+			</label>
 
-            <input class="js-give-tickets give-input required" value="1" type="number" name="give_ticket_number"
-                   id="give-ticket-number" required="" aria-required="true">
-        </p>
+			<input class="js-give-tickets give-input required" value="1" type="number" name="give_ticket_number"
+					id="give-ticket-number-<?php echo $id_prefix;?>" required="" aria-required="true">
+		</p>
 
-        <script>
+		<script>
 
-            jQuery(document).ready(function ($) {
+			jQuery( document ).ready( function( $ ) {
 
-                var wrapper = $('.js-give-ticket-wrap');
-                var amount = $('.give-amount-top');
-                var ticketAmt = $('.give-amount-top').val();
-                var ticketInput = wrapper.find('.js-give-tickets');
+				var giveFormWrap      = $( '.give-form-wrap' );
+				var idPrefix          = '<?php echo $id_prefix;?>';
+				var giveFormElement   = giveFormWrap.find( '#give-form-' + idPrefix );
+				var ticketWrapper     = giveFormElement.find( '.js-give-ticket-wrap' );
+				var donationTotalWrap = giveFormElement.find( '.give-final-total-amount' );
+				var ticketAmount      = giveFormElement.find( '.give-amount-top' ).val();
+				var ticketInput       = ticketWrapper.find( 'input[name="give_ticket_number"]' );
 
-                $(document).on('input', ticketInput, function () {
-                    var dollars = parseFloat(ticketAmt);
-                    var ticketValue = ticketInput.val();
-                    amount.val(ticketValue * dollars).blur();
-                })
+				ticketInput.on( 'change', function() {
+					var ticketCount     = $( this ).val();
+					var donationTotal   = ticketCount * parseFloat( ticketAmount );
+					var formattedAmount = Give.fn.formatCurrency( donationTotal, {}, giveFormElement );
+					donationTotalWrap.attr( 'data-total', formattedAmount ).text( Give.fn.getGlobal().currency_sign + formattedAmount );
+				})
 
-            });
+			});
 
-        </script>
+		</script>
 
 		<?php
 		$output = ob_get_clean();
@@ -68,7 +74,7 @@ function give_tickets_form_add_incrementer( $form_id ) {
 
 function give_tickets_save_ticket_amount( $payment_id, $payment_data ) {
 
-    if ( isset( $_POST['give_ticket_number'] ) ) {
+	if ( isset( $_POST['give_ticket_number'] ) ) {
 		$ticket_amount = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['give_ticket_number'] ) ) );
 
 		add_post_meta( $payment_id, 'give_ticket_number', $ticket_amount );
@@ -84,21 +90,21 @@ function give_tickets_ticket_amount_donation_meta( $payment_id ) {
 	$give_ticket_amount = get_post_meta( $payment_id, 'give_ticket_number', true );
 
 	if ( $give_ticket_amount ) : ?>
-        <div id="give-donor-details" class="postbox">
-            <h3 class="hndle">Ticket Information</h3>
+		<div id="give-donor-details" class="postbox">
+			<h3 class="hndle">Ticket Information</h3>
 
-            <div class="inside">
+			<div class="inside">
 
-                <div class="ticket-amount">
-                    <p>
-                        <label><strong><?php esc_html_e( 'Ticket Amount:', 'give' ); ?></strong></label>
+				<div class="ticket-amount">
+					<p>
+						<label><strong><?php esc_html_e( 'Ticket Amount:', 'give' ); ?></strong></label>
 						<?php echo '<span>' . esc_html( $give_ticket_amount ) . '</span>'; ?>
-                    </p>
-                </div>
+					</p>
+				</div>
 
-            </div>
-            <!-- /.inside -->
-        </div>
+			</div>
+			<!-- /.inside -->
+		</div>
 
 	<?php endif;
 }
