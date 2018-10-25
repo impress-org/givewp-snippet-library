@@ -17,15 +17,18 @@
  *  7. Now your form will have a number field below the top amount, and as you increase the number the total donation amount will increase according to your Set Donation amount.
  */
 
-
-add_action( 'give_after_donation_amount', 'give_tickets_form_add_incrementer', 10, 2 );
-
+/**
+ * This function will add number of tickets field to donation form.
+ *
+ * @param int   $form_id Donation Form ID.
+ * @param array $args    List of arguments.
+ */
 function give_tickets_form_add_incrementer( $form_id, $args ) {
 
 	$id_prefix = ! empty( $args['id_prefix'] ) ? $args['id_prefix'] : 0;
 
 	// STEP 6: Set your form ID here
-	$forms = array( 89, 88 );
+	$forms = array( 3099 );
 
 	if ( in_array( $form_id, $forms, true ) ) {
 
@@ -71,25 +74,78 @@ function give_tickets_form_add_incrementer( $form_id, $args ) {
 		echo $output;
 	}
 }
+add_action( 'give_after_donation_amount', 'give_tickets_form_add_incrementer', 10, 2 );
 
-function give_tickets_save_ticket_amount( $payment_id, $payment_data ) {
+/**
+ * This function will be used to add number of tickets field to donation receipt.
+ *
+ * @param array $give_receipt_args List of donation receipt fields.
+ * @param int   $donation_id Donation ID.
+ * @param int   $form_id     Donation Form ID.
+ *
+ * @return array
+ */
+function give_tickets_add_field_to_donation_receipt( $give_receipt_args, $donation_id, $form_id ) {
 
-	if ( isset( $_POST['give_ticket_number'] ) ) {
-		$ticket_amount = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['give_ticket_number'] ) ) );
+	// STEP 6: Set your form ID here
+	$forms = array( 3099 );
 
-		add_post_meta( $payment_id, 'give_ticket_number', $ticket_amount );
+	if ( in_array( (int)$form_id, $forms, true ) ) {
+		$give_receipt_args['give_tickets_count'] = array(
+			'name'    => __( 'No. of Tickets', 'give' ),
+			'value'   => Give()->payment_meta->get_meta( $donation_id, 'give_ticket_number', true ),
+			'display' => true,
+		);
 	}
 
+	return $give_receipt_args;
+}
+add_filter( 'give_donation_receipt_args', 'give_tickets_add_field_to_donation_receipt', 10, 3 );
+
+/**
+ * This function will save the number of tickets value to DB.
+ *
+ * @param int   $donation_id Donation ID.
+ */
+function give_tickets_save_ticket_amount( $donation_id ) {
+
+	$post_data = give_clean( $_POST );
+
+	if ( isset( $post_data['give_ticket_number'] ) ) {
+		$ticket_amount = $post_data['give_ticket_number'];
+
+		Give()->payment_meta->add_meta( $donation_id, 'give_ticket_number', $ticket_amount );
+	}
+}
+add_action( 'give_insert_payment', 'give_tickets_save_ticket_amount', 10, 1 );
+
+/**
+ * This function will update the donation amount based on the number of tickets selected.
+ *
+ * @param array $donation_data List of donation data.
+ *
+ * @return array
+ */
+function give_tickets_update_ticket_amount( $donation_data ) {
+
+	$donation_data['price'] = $donation_data['price'] * $donation_data['post_data']['give_ticket_number'];
+
+	return $donation_data;
 }
 
-add_action( 'give_insert_payment', 'give_tickets_save_ticket_amount', 10, 2 );
+add_filter( 'give_donation_data_before_gateway', 'give_tickets_update_ticket_amount', 10, 1 );
 
-function give_tickets_ticket_amount_donation_meta( $payment_id ) {
+/**
+ * This function will display the number of tickets data in admin.
+ *
+ * @param int $donation_id Donation ID.
+ */
+function give_tickets_ticket_amount_donation_meta( $donation_id ) {
 
 	// Bounce out if no data for this transaction
-	$give_ticket_amount = get_post_meta( $payment_id, 'give_ticket_number', true );
+	$no_of_tickets = Give()->payment_meta->get_meta( $donation_id, 'give_ticket_number', true );
 
-	if ( $give_ticket_amount ) : ?>
+	if ( $no_of_tickets ) : ?>
 		<div id="give-donor-details" class="postbox">
 			<h3 class="hndle">Ticket Information</h3>
 
@@ -97,8 +153,8 @@ function give_tickets_ticket_amount_donation_meta( $payment_id ) {
 
 				<div class="ticket-amount">
 					<p>
-						<label><strong><?php esc_html_e( 'Ticket Amount:', 'give' ); ?></strong></label>
-						<?php echo '<span>' . esc_html( $give_ticket_amount ) . '</span>'; ?>
+						<label><strong><?php esc_html_e( 'No. of Tickets:', 'give' ); ?></strong></label>
+						<?php echo '<span>' . esc_html( $no_of_tickets ) . '</span>'; ?>
 					</p>
 				</div>
 
@@ -108,5 +164,4 @@ function give_tickets_ticket_amount_donation_meta( $payment_id ) {
 
 	<?php endif;
 }
-
 add_action( 'give_view_donation_details_billing_before', 'give_tickets_ticket_amount_donation_meta', 10, 2 );
