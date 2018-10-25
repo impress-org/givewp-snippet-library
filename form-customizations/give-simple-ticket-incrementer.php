@@ -28,7 +28,7 @@ function give_tickets_form_add_incrementer( $form_id, $args ) {
 	$id_prefix = ! empty( $args['id_prefix'] ) ? $args['id_prefix'] : 0;
 
 	// STEP 6: Set your form ID here
-	$forms = array( 3099 );
+	$forms = array( 88, 89 );
 
 	if ( in_array( $form_id, $forms, true ) ) {
 
@@ -88,7 +88,7 @@ add_action( 'give_after_donation_amount', 'give_tickets_form_add_incrementer', 1
 function give_tickets_add_field_to_donation_receipt( $give_receipt_args, $donation_id, $form_id ) {
 
 	// STEP 6: Set your form ID here
-	$forms = array( 3099 );
+	$forms = array( 88, 89 );
 
 	if ( in_array( (int)$form_id, $forms, true ) ) {
 		$give_receipt_args['give_tickets_count'] = array(
