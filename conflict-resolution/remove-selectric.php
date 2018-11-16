@@ -6,7 +6,7 @@
  *  The Selectric.js script is popular with themes, and makes dropdowns look nice.
  *  but it causes problems with our Currency Switcher dropdown on forms.
  *  It's not easy to "destroy" this correctly, see this issue as a reference:
- *
+ *  https://github.com/lcdsantos/jQuery-Selectric/issues/107#issuecomment-186279467
  *
  */
  
