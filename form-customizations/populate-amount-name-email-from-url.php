@@ -13,63 +13,69 @@
 
 // Hooking into the single form view.
 add_action( 'give_post_form_output', 'give_populate_amount_name_email' );
-
 function give_populate_amount_name_email() {
 	?>
 
 	<script>
-		// Get variable from query string in URL
-		function giveGetQueryVariable(variable) {
-			var query = window.location.search.substring(1);
-			var vars = query.split("&");
-			for (var i=0;i<vars.length;i++) {
-				var pair = vars[i].split("=");
-				if(pair[0] == variable){return pair[1];}
-			}
-			return(false);
-		}
+		
+		// use an enclosure so we don't pollute the global space
+		(function(window, document, $, undefined){
 
-		jQuery(document).ready(function( $ ) {
-			// Get the amount from the URL
-			var getamount = giveGetQueryVariable("amount");
-			var amount = '1.00';
+			'use strict';
 
-			// Set fallback in case URL variable isn't set
-			if ( getamount !== false ) {
-				amount = getamount;
-			}
+			var giveCustom = {};
 
-			var firstname = ( giveGetQueryVariable("first") !== false ) ? decodeURI(giveGetQueryVariable("first")) : '';
-			var lastname = ( giveGetQueryVariable("last") !== false ) ? decodeURI(giveGetQueryVariable("last")) : '';
-			var email = ( giveGetQueryVariable("email") !== false ) ? decodeURI(giveGetQueryVariable("email")) : '';
+			giveCustom.init = function() {
 
-			// Populate the amount field, then update the total
-			if ( $('#give-amount').length > 0 ) {
-				$('#give-amount')
-					.val(amount)
-					.focus()
-					.trigger('blur');
-			}
+				// Get the amount from the URL
+				var getamount = giveCustom.getQueryVariable("amount");
+				var amount = '1.00';
+				// Set fallback in case URL variable isn't set
+				if ( getamount !== false ) {
+					amount = getamount;
+				}
+				var firstname = ( giveCustom.getQueryVariable("first") !== false ) ? decodeURI(giveCustom.getQueryVariable("first")) : '';
+				var lastname = ( giveCustom.getQueryVariable("last") !== false ) ? decodeURI(giveCustom.getQueryVariable("last")) : '';
+				var email = ( giveCustom.getQueryVariable("email") !== false ) ? decodeURI(giveCustom.getQueryVariable("email")) : '';
+				// Populate the amount field, then update the total
+				if ( $('#give-amount').length > 0 ) {
+					$('#give-amount')
+						.val(amount)
+						.focus()
+						.trigger('blur');
+				}
+				if ( firstname !== false && $('#give-first-name-wrap input.give-input').length > 0 ) {
+					$('#give-first-name-wrap input.give-input')
+						.val(firstname);
+				}
+				if ( lastname !== false && $('#give-last-name-wrap input.give-input').length > 0 ) {
+					$('#give-last-name-wrap input.give-input')
+						.val(lastname);
+				}
+				if ( email !== false && $('#give-email-wrap input.give-input').length > 0 ) {
+					$('#give-email-wrap input.give-input')
+						.val(email);
+				}
 
-			if ( firstname !== false && $('#give-first-name-wrap input.give-input').length > 0 ) {
-				$('#give-first-name-wrap input.give-input')
-					.val(firstname);
-			}
-
-			if ( lastname !== false && $('#give-last-name-wrap input.give-input').length > 0 ) {
-				$('#give-last-name-wrap input.give-input')
-					.val(lastname);
-			}
-
-			if ( email !== false && $('#give-email-wrap input.give-input').length > 0 ) {
-				$('#give-email-wrap input.give-input')
-					.val(email);
 			}
 
-		});
+			giveCustom.getQueryVariable = function( variable ) {
+
+				var query = window.location.search.substring(1);
+				var vars = query.split("&");
+				for (var i=0;i<vars.length;i++) {
+					var pair = vars[i].split("=");
+					if(pair[0] == variable){return pair[1];}
+				}
+				return(false);
+
+			}
+
+			giveCustom.init();
+
+		})(window, document, jQuery);
 
 	</script>
 
 	<?php
-
 }
