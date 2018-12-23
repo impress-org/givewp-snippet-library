@@ -1,3 +1,8 @@
+/* Use Emoji to indicate styled Terms checkbox 
+ * See here for emoji Unicode reference:
+ * https://apps.timwhitlock.info/emoji/tables/unicode
+ * /
+
 input[name = "give_agree_to_terms"] {
   display: none;
 }
