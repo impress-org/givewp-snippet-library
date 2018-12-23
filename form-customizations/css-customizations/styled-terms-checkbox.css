@@ -1,5 +1,3 @@
-/* Using emoji to indicate agreement to terms */
-
 input[name = "give_agree_to_terms"] {
   display: none;
 }
@@ -9,12 +7,11 @@ input[name = "give_agree_to_terms"] + label {color: red; cursor:pointer;}
 input[name = "give_agree_to_terms"]:checked + label {color: green; font-weight: 700;}
 
 input[name = "give_agree_to_terms"] + label:before {
-  content: "❌";
+  content: "\274C";
 }
 
 input[name = "give_agree_to_terms"]:checked + label:before {
-  content: "✔️"
-}
+  content: "\2705"}
 
 input[name = "give_agree_to_terms"] + label:before {
 	font-size: 0.75rem;
