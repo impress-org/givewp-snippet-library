@@ -1,0 +1,30 @@
+/* Using emoji to indicate agreement to terms */
+
+input[name = "give_agree_to_terms"] {
+  display: none;
+}
+
+input[name = "give_agree_to_terms"] + label {color: red; cursor:pointer;}
+
+input[name = "give_agree_to_terms"]:checked + label {color: green; font-weight: 700;}
+
+input[name = "give_agree_to_terms"] + label:before {
+  content: "❌";
+}
+
+input[name = "give_agree_to_terms"]:checked + label:before {
+  content: "✔️"
+}
+
+input[name = "give_agree_to_terms"] + label:before {
+	font-size: 0.75rem;
+  display: inline-block;
+  transition: .1s all;
+  cursor: pointer;
+  z-index: 999 !important;
+	margin: 0 10px 0 0;
+}
+
+input[name = "give_agree_to_terms"]:checked + label:before {
+  transform: scale(1.1);
+}
