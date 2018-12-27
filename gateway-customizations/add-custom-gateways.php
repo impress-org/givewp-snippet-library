@@ -11,12 +11,12 @@
  add_filter( 'give_payment_gateways', function() {
     
     $gateways['give_facebook'] = array(
-        'admin_label'    => esc_attr__( 'Facebook Donations (External)', 'give-free' ),
+        'admin_label'    => esc_attr__( 'Facebook Donations (DO NOT ENABLE)', 'give-free' ),
         'checkout_label' => esc_attr__( 'Facebook Donations (External)', 'give-free' )
     );
 
     $gateways['give_crowdrise'] = array(
-        'admin_label'    => esc_attr__( 'Crowdrise Donations (External)', 'give-free' ),
+        'admin_label'    => esc_attr__( 'Crowdrise Donations (DO NOT ENABLE)', 'give-free' ),
         'checkout_label' => esc_attr__( 'Crowdrise Donations (External)', 'give-free' )
     );
 
