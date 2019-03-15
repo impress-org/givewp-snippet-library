@@ -12,7 +12,7 @@ input[name = "give_agree_to_terms"] + label {color: red; cursor:pointer;}
 input[name = "give_agree_to_terms"]:checked + label {color: green; font-weight: 700;}
 
 input[name = "give_agree_to_terms"] + label:before {
-  content: "\274C";
+  content: "\2b1c";
 }
 
 input[name = "give_agree_to_terms"]:checked + label:before {
