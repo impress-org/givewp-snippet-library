@@ -26,7 +26,7 @@ function custom_givewp_output_terms_for_saving($form_id) {
     if ( $terms_enabled!=='disabled' ) {
         ?>
         <textarea class="give-textarea" name="give_form_terms" id="give_form_terms" aria-hidden="true"
-                  style="display:none;opacity: 0; height: 0; border: 0 !important;" readonly aria-readonly="true" disabled aria-disabled="true"><?php echo $terms; ?></textarea>
+                  style="display:none;opacity: 0; height: 0; border: 0 !important;" readonly disabled><?php echo $terms; ?></textarea>
         <?php
     }
 
