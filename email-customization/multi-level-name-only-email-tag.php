@@ -21,12 +21,7 @@ function add_give_mailchimp_optin_email_tag() {
 add_action( 'give_add_email_tags', 'add_give_mailchimp_optin_email_tag' );
 
 /**
- * Get Custom Engraving Message
- *
- * Example function that returns custom field data if present in payment_meta;
- * The example used here is in conjunction with the Give documentation tutorials.
- *
- * @param array $tag_args Array of arguments
+ * Callback function for the email tag output
  *
  * @return string
  */
