@@ -26,3 +26,4 @@ function my_custom_multiple_paypal_accounts( $paypal_args, $payment_data ) {
 }
 
 add_filter( 'give_paypal_redirect_args', 'my_custom_multiple_paypal_accounts', 10, 2 );
+add_filter( 'give_recurring_paypal_args', 'my_custom_multiple_paypal_accounts', 10, 2 );
