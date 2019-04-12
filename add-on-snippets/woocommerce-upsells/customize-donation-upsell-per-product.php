@@ -21,7 +21,7 @@ function give_woo_show_donation_for_specific_products( $is_enabled, $give_donati
 
 	// Setting this to false for the conditions below.
 	// NOTE: Depending on your use case this may not be needed.
-	$is_enabled = false;
+	// $is_enabled = false;
 
 	/**
 	 * Uncomment an example below or create your own conditions.
