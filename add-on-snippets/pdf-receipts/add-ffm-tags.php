@@ -2,7 +2,9 @@
 /**
  * Add a custom tag to be supported in PDF Receipts
  *
- * This tag adds a new {LABEL} tag which populates with Form Field Manager Meta tag data. Replace LABEL in three places in the code (and here in the comment?), and replace the REPLACE WITH FFM META tag with the appropriate Form Field Manager meta tag.
+ * This tag adds a new {LABEL} tag which populates with Form Field Manager Meta tag data. 
+ * Replace LABEL in three places in the code (and here in the comment?) 
+ * Replace the REPLACE WITH FFM META tag with the appropriate Form Field Manager meta tag.
  *
  * @param $template_content
  * @param $args
