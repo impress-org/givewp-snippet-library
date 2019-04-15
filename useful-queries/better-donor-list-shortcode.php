@@ -4,6 +4,8 @@
  * A [my_donor_list] shortcode to list donors with names and amounts with attributes:
  *
  * NOTE: Requires Give version 2.0+
+ * NOTE: This functionality is provided already in our [give_donor_wall] shortcode. 
+ * https://givewp.com/documentation/core/shortcodes/give_donor_wall/
  *
  * @number  = the number of donations to list.
  * @form_id = whether to limit the donors to a specific form.
