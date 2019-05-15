@@ -4,6 +4,7 @@
  *
  * Modify the paypal business email on a per form basis.
  * This allows you to create separate donation forms per paypal "business" aka nonprofit cause.
+ * NOTE: this snippet does NOT support recurring donations.
  *
  * @param $paypal_args
  * @param $payment_data
