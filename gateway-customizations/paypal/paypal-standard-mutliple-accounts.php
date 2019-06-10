@@ -5,6 +5,8 @@
  * Modify the paypal business email on a per form basis.
  * This allows you to create separate donation forms per paypal "business" aka nonprofit cause.
  * NOTE: this snippet does NOT support recurring donations.
+ * ALSO NOTE: if you use this, in order for transactions to be marked as complete, you must disable
+ *    the IPN verification step at Donations > Settings > Payment Gateways > PayPal Standard
  *
  * @param $paypal_args
  * @param $payment_data
