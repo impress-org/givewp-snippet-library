@@ -23,8 +23,7 @@ add_action( 'give_add_email_tags', 'add_give_mailchimp_optin_email_tag' );
 /**
  * Return email tag content
  *
- * Example function that returns custom field data if present in payment_meta;
- * The example used here is in conjunction with the Give documentation tutorials.
+ * Gets the data from the meta to display in the tag. Sets a default fallback message
  *
  * @param array $tag_args Array of arguments
  *
