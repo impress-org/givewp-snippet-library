@@ -53,7 +53,9 @@ add_action( 'give_donation_form_required_fields', 'give_required_donor_phone_for
 
 /**
  * Save phone number to donation and donor meta
- * Note: donor phone will update in donor meta if donor changes there phone number.
+ * Note: donor phone will update in donor meta if donor changes the phone number.
+ * So on a second donation with a new number, the old number will be changed in the DONOR meta, 
+ * but the donation meta of the first donation will have the old number.
  *
  * @param int $donation_id Donation ID.
  */
