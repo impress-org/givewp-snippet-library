@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Give - Example Custom Field Integration
- * Plugin URI: https://givewp.com/documentation/developers/how-to-create-custom-form-fields/
- * Description: This plugin demonstrates adds custom fields to your Give give forms with validation, email functionality, and field data output on the payment record within wp-admin.
+ * Plugin URI: https://example.com
+ * Description: This plugin demonstrates adds custom fields to your Give give forms with validation, email functionality, and field data output on the payment record within wp-admin, see https://givewp.com/documentation/developers/how-to-create-custom-form-fields/
  * Version: 1.0
  * Author: WordImpress
  * Author URI: https://givewp.com
