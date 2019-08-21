@@ -25,4 +25,7 @@ function give_stripe_custom_payment_meta( $charge_args ) {
 
 	return $charge_args;
 }
-add_filter( 'give_stripe_create_charge_args', 'give_stripe_custom_payment_meta', 10 );
+add_filter( 'give_stripe_create_intent_args', 'give_stripe_custom_payment_meta', 10 );
+
+// for the Stripe Checkout modal, uncomment the next line.
+// add_filter( 'give_stripe_create_intent_args', 'give_stripe_custom_payment_meta', 10 );
