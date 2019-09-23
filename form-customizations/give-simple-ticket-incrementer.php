@@ -8,7 +8,7 @@
 
 /**
  *  HOW TO USE:
- *  1. Install like a normal plugin
+ *  1. Copy the contents of this file into a new php file, and drop it into your /plugins or /mu-plugins directory.
  *  2. Create a form that has a Set Donation (not multi-level)
  *  3. Set the donation amount to your ticket price for ONE ticket
  *  4. Enable the Custom Amount option.
