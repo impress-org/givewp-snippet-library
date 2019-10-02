@@ -2,6 +2,17 @@
 
 /**
  *  Default the Tributes selection to "Yes Please"
+ *  
+ *  You can also hide the tributes options and legend with this CSS code added to your theme's stylesheet.
+ * 
+ * [id*='give-tributes-options'] {
+ *     display:none;
+ * }
+ *
+ * 
+ * [id*=give-tributes-dedicate-donation] legend {
+ *     display:none;
+ *  }
  *
  */
  
