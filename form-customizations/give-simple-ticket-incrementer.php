@@ -127,9 +127,13 @@ add_action( 'give_insert_payment', 'give_tickets_save_ticket_amount', 10, 1 );
  * @return array
  */
 function give_tickets_update_ticket_amount( $donation_data ) {
+	$tickets_present = $donation_data['post_data']['give_ticket_number'];
 
-	$donation_data['price'] = $donation_data['price'] * $donation_data['post_data']['give_ticket_number'];
+	if ( $tickets_present ) {
 
+		$donation_data['price'] = $donation_data['price'] * $donation_data['post_data']['give_ticket_number'];		
+	}
+	
 	return $donation_data;
 }
 
