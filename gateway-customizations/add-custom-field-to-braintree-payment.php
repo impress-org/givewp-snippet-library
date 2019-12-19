@@ -6,9 +6,9 @@
  * @see https://developers.braintreepayments.com/reference/request/transaction/sale/php#custom_fields
  * @see https://articles.braintreepayments.com/control-panel/custom-fields
  *
- * @param $transaction
+ * @param array $transaction
  *
- * @return mixed
+ * @return array
  */
 function give_braintree_add_form_title( $transaction ) {
 	$transaction['customFields']['form_title'] = esc_attr( give_get_meta( $transaction['orderId'], '_give_payment_form_title', true ) );
