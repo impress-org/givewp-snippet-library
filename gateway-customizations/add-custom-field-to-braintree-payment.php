@@ -1,7 +1,8 @@
 <?php
 /**
- * Add form title to Braintree donation arguments
- * Note: This snippet will add form title to Branintree payment under custom fields if a custom field exist on Braintree with form_title api name
+ * Adds the donation form title to Braintree donation arguments.
+ *
+ * NOTE: You need to manually add this custom field in your Braintree admin panel BEFORE adding this custom snippet. Otherwise, you WILL receive an API error. Once you add that field, this snippet will add the donation form title to Braintree payment under custom fields if, once agian, you have added that custom field on Braintree with the "form_title" name.
  *
  * @see https://developers.braintreepayments.com/reference/request/transaction/sale/php#custom_fields
  * @see https://articles.braintreepayments.com/control-panel/custom-fields
