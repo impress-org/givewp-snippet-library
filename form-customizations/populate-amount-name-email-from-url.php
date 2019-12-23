@@ -6,76 +6,95 @@
  * first and last name, and email address from a URL you provide
  * EXAMPLE: https://example.com/donations/give-form/?amount=46.00&first=Peter&last=Joseph&email=testing@givewp.com
  *
+ * Hooking into the single form view.
+ *
  * CAVEATS:
  * -- Your form must support custom amounts
  * -- This snippet only supports one form per page as-is
  */
-
-// Hooking into the single form view.
-add_action( 'give_post_form_output', 'give_populate_amount_name_email' );
-function give_populate_amount_name_email() {
+function my_custom_give_populate_amount_name_email() {
 	?>
-
 	<script>
-		
-		// use an enclosure so we don't pollute the global space
-		(function(window, document, $, undefined){
-
+		( function( window, document, $, undefined ) {
 			'use strict';
-
 			var giveCustom = {};
 
 			giveCustom.init = function() {
 
+				// Are we passed a form ID?
+				var form_id = giveCustom.getQueryVariable( 'form_id' ) !== false ? decodeURI( giveCustom.getQueryVariable( 'form_id' ) ) : '';
+
+				if ( form_id !== '' ) {
+					// Make to jQuery object.
+					var giveForm = $( '.give-form' + giveCustom.getQueryVariable( 'form_id' ) )
+				} else {
+					// Fallback.
+					giveForm = $( '.give-form' );
+				}
+
 				// Get the amount from the URL
-				var getamount = giveCustom.getQueryVariable("amount");
-				var amount = '1.00';
-				// Set fallback in case URL variable isn't set
-				if ( getamount !== false ) {
-					amount = getamount;
-				}
-				var firstname = ( giveCustom.getQueryVariable("first") !== false ) ? decodeURI(giveCustom.getQueryVariable("first")) : '';
-				var lastname = ( giveCustom.getQueryVariable("last") !== false ) ? decodeURI(giveCustom.getQueryVariable("last")) : '';
-				var email = ( giveCustom.getQueryVariable("email") !== false ) ? decodeURI(giveCustom.getQueryVariable("email")) : '';
-				// Populate the amount field, then update the total
-				if ( $('#give-amount').length > 0 ) {
-					$('#give-amount')
-						.val(amount)
-						.focus()
-						.trigger('blur');
-				}
-				if ( firstname !== false && $('#give-first-name-wrap input.give-input').length > 0 ) {
-					$('#give-first-name-wrap input.give-input')
-						.val(firstname);
-				}
-				if ( lastname !== false && $('#give-last-name-wrap input.give-input').length > 0 ) {
-					$('#give-last-name-wrap input.give-input')
-						.val(lastname);
-				}
-				if ( email !== false && $('#give-email-wrap input.give-input').length > 0 ) {
-					$('#give-email-wrap input.give-input')
-						.val(email);
+				var amount = giveCustom.getQueryVariable( 'amount' ) !== false ? decodeURI( giveCustom.getQueryVariable( 'amount' ) ) : '';
+
+				// Update the amount
+				var formattedAmount = Give.fn.formatCurrency( amount, {
+					symbol: Give.form.fn.getInfo( 'currency_symbol', giveForm ),
+					position: Give.form.fn.getInfo( 'currency_position', giveForm )
+				}, giveForm );
+
+				// Unformatted amount (for data).
+				var unformattedAmount = Give.fn.unFormatCurrency( amount, Give.form.fn.getInfo( 'decimal_separator', giveForm ) );
+
+				// Update the total amount.
+				if ( amount ) {
+					giveForm.find( '.give-final-total-amount' ).attr( 'data-total', unformattedAmount )
+						.text( formattedAmount );
+					giveForm.find( '.give-amount-top' ).val(unformattedAmount);
 				}
 
-			}
+				// Fill personal info fields.
 
+				var firstNamePassedVal = giveCustom.getQueryVariable( 'first' ) !== false ? decodeURI( giveCustom.getQueryVariable( 'first' ) ) : '';
+				var lastNamePassedVal = giveCustom.getQueryVariable( 'last' ) !== false ? decodeURI( giveCustom.getQueryVariable( 'last' ) ) : '';
+				var emailPassedVal = giveCustom.getQueryVariable( 'email' ) !== false ? decodeURI( giveCustom.getQueryVariable( 'email' ) ) : '';
+
+				var firstNameInput = giveForm.find( '#give-first-name-wrap input.give-input' );
+				var lastNameInput = giveForm.find( '#give-last-name-wrap input.give-input' );
+				var emailInput = giveForm.find( '#give-email-wrap input.give-input' );
+
+				if ( firstNamePassedVal !== false && firstNameInput.length > 0 ) {
+					firstNameInput.val( firstNamePassedVal );
+				}
+				if ( lastNamePassedVal !== false && lastNameInput.length > 0 ) {
+					lastNameInput.val( lastNamePassedVal );
+				}
+				if ( emailPassedVal !== false && emailInput.length > 0 ) {
+					emailInput.val( emailPassedVal );
+				}
+			};
+
+			/**
+			 * Get Query Variable from URL.
+			 *
+			 * @param variable
+			 * @returns {string|boolean}
+			 */
 			giveCustom.getQueryVariable = function( variable ) {
-
-				var query = window.location.search.substring(1);
-				var vars = query.split("&");
-				for (var i=0;i<vars.length;i++) {
-					var pair = vars[i].split("=");
-					if(pair[0] == variable){return pair[1];}
+				var query = window.location.search.substring( 1 );
+				var vars = query.split( '&' );
+				for ( var i = 0; i < vars.length; i ++ ) {
+					var pair = vars[ i ].split( '=' );
+					if ( pair[ 0 ] == variable ) {
+						return pair[ 1 ];
+					}
 				}
-				return(false);
-
-			}
+				return false;
+			};
 
 			giveCustom.init();
 
-		})(window, document, jQuery);
-
+		} )( window, document, jQuery );
 	</script>
-
 	<?php
 }
+
+add_action( 'give_post_form_output', 'my_custom_give_populate_amount_name_email' );
