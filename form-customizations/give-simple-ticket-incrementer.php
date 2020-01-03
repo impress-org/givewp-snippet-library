@@ -6,8 +6,8 @@
  *  field. Ideal for simple ticket sales. This is provided as an example plugin, it is not officially supported by
  *  GiveWP.com in any way and we are not liable for how it impacts your site in any way.
  * Version:     1.1.0
- * Author:      GiveWP, dlocc
- * Author URI:  https://givewp.com
+ * Author:      The impress.org team, dlocc
+ *
  */
 
 /**
