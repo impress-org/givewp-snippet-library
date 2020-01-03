@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin URI:  https://givewp.com/
- * Plugin Name: Give - Simple Ticket Incrementer
+ * Plugin Name: Custom GiveWP Simple Ticket Incrementer
  * Description: A simple functionality plugin (not supported) to increment donation amounts based on a number input
  *  field. Ideal for simple ticket sales. This is provided as an example plugin, it is not officially supported by
  *  GiveWP.com in any way and we are not liable for how it impacts your site in any way.
