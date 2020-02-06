@@ -1,7 +1,16 @@
 <?php
 /**
  * Use this function to unset/remove/disable one or more recurring periods.
- * This below snippets remove the Daily and Weekly option from the recurring periods.
+ * This snippet removes the "Daily" and "Weekly" options from the recurring periods.
+ * 
+ * For Reference, all current options are: 
+ * day 
+ * week
+ * month
+ * quarter
+ * year 
+ * 
+ * Each option must be unset individually, as shown below.
  *
  * @param array $periods
  *
