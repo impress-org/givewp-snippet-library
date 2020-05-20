@@ -4,9 +4,10 @@
  *
  * Note: to style these images, use a CSS snippet like this:
  *  .my-give-accepted-card-images img {
- *    margin: .2em .5em;
- *    max-height: 35px;
- *   }
+ *     margin: .2em .5em;
+ *     max-height: 35px;
+ *     max-width: 56px;
+ *  }
  */
 function my_give_display_accepted_card_images() {
 
