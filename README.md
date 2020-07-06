@@ -4,7 +4,7 @@ A collection of code snippets to enhance or expand on the free Give WordPress Do
 
 If you need assistance implementing custom PHP code on your WordPress website, we have this guide:
 
-https://givewp.com/documentation/resources/adding-custom-functions-to-your-wordpress-website/​
+https://givewp.com/documentation/resources/adding-custom-functions-to-your-wordpress-website/
 
 For custom CSS see this guide:
 https://givewp.com/documentation/resources/handling-custom-css-in-wordpress/
