@@ -2,7 +2,7 @@
 
 /**
  *  The Multi-Step form template loads in an iframe, which prevents theme styles from interfering with form styles.
- *  To style Multi-Step forms, use this PHP snippet to add inline styles. Replace lines 18-22 with your custom styles.
+ *  To style Multi-Step forms, use this PHP snippet to add inline styles. Replace lines 13-17 with your custom styles.
  *
  */
 
