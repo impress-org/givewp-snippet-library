@@ -18,6 +18,6 @@ function custom_output_single_donor_wall( $form ) {
         
         // do the [give_donor_wall] shortcode and populate the form ID
         echo '<h3>Special Thanks to our Donors:</h3>';
-        echo do_shortcode('[give_donor_wall form=' . $form . ']');
+        echo do_shortcode('[give_donor_wall form_id="' . $form . '"]');
 
 }
