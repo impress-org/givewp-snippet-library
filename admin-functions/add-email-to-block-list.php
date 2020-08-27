@@ -3,7 +3,7 @@
 /**
  *  Allows admins to block all donations from a specific email address
  *
- * 
+ *  see this video for how to use this snippet: http://somup.com/cYjtbCXVvx
  */
 
 function my_give_block_list( $spam ){
