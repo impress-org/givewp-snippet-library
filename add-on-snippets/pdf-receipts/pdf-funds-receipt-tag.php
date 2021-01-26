@@ -23,8 +23,6 @@ function give_add_total_pdf_tag( $template_content, $args ) {
 		return $template_content;
 	}
 
-	/* @var Revenue $fundRevenueRepository */
-	$fundRevenueRepository = give( Revenue::class );
 	/* @var Funds $fundRepository */
 	$fundRepository = give( Funds::class );
 
@@ -32,8 +30,7 @@ function give_add_total_pdf_tag( $template_content, $args ) {
 
 	/* @var Fund $fund */
 	$fund             = $formAssociatedFunds[0];
-	$total            = $fundRevenueRepository->getFundRevenue( $fund->getId() );
-	$template_content = str_replace( '{funds}', give_currency_filter( $total ), $template_content );
+	$template_content = str_replace( '{funds}', $fund->getTitle(), $template_content );
 
 	return $template_content;
 }
