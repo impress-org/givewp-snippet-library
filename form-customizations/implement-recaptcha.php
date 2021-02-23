@@ -3,7 +3,7 @@
  * Implementing Google's ReCaptcha on All Give Forms
  *
  *  To effectively use this snippet, please do the following:
- *  1. Get your Google ReCAPTCHA API Key here: https://www.google.com/recaptcha/
+ *  1. Get your Google ReCAPTCHA API Key here: https://www.google.com/recaptcha/admin/create
  *  2. In each function and action, replace "_myprefix_" with your own custom prefix
  *  3. Put your "Secret Key" where it says "MYSECRETKEY" in the $recaptcha_secret_key string
  *  4. Put your "Site Key" where it says "MYSITEKEY" in TWO areas below
