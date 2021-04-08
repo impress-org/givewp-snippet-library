@@ -43,4 +43,4 @@ function my_give_add_costarican_currency( $currencies ) {
 	return $currencies;
 }
 
-add_filter( 'give_currencies', 'my_give_add_costarican_currency', 10, 1 );
+add_filter( 'give_register_currency', 'my_give_add_costarican_currency', 10, 1 );
