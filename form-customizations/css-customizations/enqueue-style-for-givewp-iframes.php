@@ -1,7 +1,7 @@
 <?php
 /**
  *  The multi-Step form template and the donor dashboard load in an iframe, which prevents theme styles from interfering with their styles.
- *  To style them, use this PHP snippet to add inline styles. 
+ *  To style them, use this PHP snippet to add a custom stylesheet that styles the form or the donor dashboard.
  *  
  *  Make sure you create the form-template-styles.css file with the CSS styles you'll use.
  */
