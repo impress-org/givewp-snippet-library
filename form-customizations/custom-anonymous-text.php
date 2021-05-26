@@ -8,7 +8,7 @@
  */
 
 function custom_anonymous_donation_checkbox_label($text) {
-	$text = 'YOUR CUSTOM TEXT HERE';
+	$text = __('YOUR CUSTOM TEXT HERE', 'give');
 	return $text;
 }
 
