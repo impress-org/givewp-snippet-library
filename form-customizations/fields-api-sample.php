@@ -55,10 +55,10 @@ add_action( 'give_fields_payment_mode_before_gateways', function( $collection ) 
         // Select field with options.
         give_field( 'select', 'mySelectField' )
             ->label( 'My Select Field' )
-            ->options([
-                'aye' => __( 'Aye' ),
-                'bee' => __( 'Bee' ),
-            ])
+            ->options(
+                [ 'aye', __( 'Aye' ) ],
+                [ 'bee', __( 'Bee' ) ]
+            )
 
     );
 });
