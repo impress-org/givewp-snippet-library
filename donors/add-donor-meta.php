@@ -1,9 +1,4 @@
 <?php
-/**
- * Add donor meta field to form
- *
- * @param int $form_id Donation Form ID.
- */
 function give_add_donor_phone_form_field( $form_id ) {
 	?>
 	<p id="give-email-wrap" class="form-row form-row-wide">
@@ -83,16 +78,16 @@ add_action( 'give_insert_payment', 'give_save_donor_phone_number', 10 );
 function give_show_donor_phone_numbers( $donor ) {
 	$phone_numbers = $donor->get_meta( 'give_phone', false );
 	?>
-	<div id="donor-address-wrapper" class="donor-section clear">
+	<div class="donor-section clear">
 		<h3><?php esc_html_e( 'Phone Numbers', 'give' ); ?></h3>
 
 		<div class="postbox">
 			<div class="inside">
 				<?php if ( empty( $phone_numbers ) ) : ?>
-					<?php esc_html_e( 'This donor does not have any phone number saved.', 'give' ); ?>
+					<p><?php esc_html_e( 'This donor does not have any phone number saved.', 'give' ); ?></p>
 				<?php else: ?>
 					<?php foreach ( $phone_numbers as $phone_number ) : ?>
-						<?php echo $phone_number; ?><br>
+						<p><?php echo $phone_number; ?></p>
 					<?php endforeach; ?>
 				<?php endif; ?>
 			</div>
