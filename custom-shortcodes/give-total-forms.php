@@ -13,7 +13,7 @@ function my_give_display_number_of_forms( $atts ) {
 	$number_of_donation_forms = wp_count_posts( 'give_forms' )->publish;
 
 	$atts = shortcode_atts( array(
-		'donation_forms_page' => false,
+		'donation_forms_page_id' => false,
 	), $atts, 'give_total_forms' );
 
 	$donation_forms_page = '';
