@@ -1,5 +1,19 @@
 <?php 
-
+/**
+ *  Creates a shortcode to display a message with the total number of donations for a specific donation form.
+ *
+ *  Sample shortcode:
+ *
+ * 	In case you have a form with 3 donations, its ID is 123, and the title is Help Old Horses :
+ * 	
+ *	[give_raised_for_forms form_id="123"] displays "We already have 3 donations for the Help Old Horses campaign!"
+ *
+ * 	If you insert an ID for a post type that is NOT a GiveWP form, this is what happens:
+ *
+ *	[give_raised_for_forms form_id="11"] displays "This is not a donation form. Make sure you are using an ID for a donation form."
+ *
+ * 	Another possible scenario is that you add the shortcode without passing the form ID as a parameter. In this case, the shortcode will display "It's necessary that you insert the form ID on the shortcode."
+ */
 
 function my_give_display_donations_for_forms( $atts ) {
 
