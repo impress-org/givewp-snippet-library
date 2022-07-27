@@ -18,8 +18,10 @@ function my_give_display_number_of_forms( $atts ) {
 
 	$donation_forms_page = '';
 
-	if ( $atts['donation_forms_page'] != false ) {
-		$donation_forms_page = '<a href="' . $atts['donation_forms_page'] . '"> Check out our campaigns! <a>';	
+	if ( $atts['donation_forms_page_id']) {
+        	$link = get_permalink($atts['donation_forms_page_id']);
+        	
+		$donation_forms_page = '<a href="' . $link . '"> Check out our campaigns! <a>';	
 	}
 
 	$html = '
