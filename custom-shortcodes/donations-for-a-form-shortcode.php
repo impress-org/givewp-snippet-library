@@ -25,43 +25,21 @@ function my_give_display_donations_for_forms( $atts ) {
 	$formId = $atts[ 'form_id' ];
 
 	if ( ! $formId ) {
-		$html = '
-			<div class="give_raised_for_forms">
-				<p>
-					It\'s necessary that you insert the form ID on the shortcode.
-				</p>
-			</div>
-		';
+    	$message = 'It\'s necessary that you insert the form ID on the shortcode.';
+	} elseif ( get_post_type( $formId ) !== 'give_forms' ) {
+	    $message = 'This is not a donation form. Make sure you are using an ID for a donation form.';
+	} else {
+	    $form_title = get_the_title( $formId );
+	    $number_of_donations = give_get_meta( $formId, '_give_form_sales', true );
 
-		return $html;
+	    $message = sprintf(
+	        'We already have %s donations for the %s campaign!',
+	        $number_of_donations,
+	        $form_title
+	    );
 	}
-
-	if ( get_post_type( $formId ) !== 'give_forms' ) {
-		$html = '
-			<div class="give_raised_for_forms">
-				<p>
-					This is not a donation form. Make sure you are using an ID for a donation form.
-				</p>
-			</div>
-		';
-
-		return $html;
-	}
-
-	$info = get_post_meta( $formId );
-	$post_title = get_the_title( $formId );
-
-	$number_of_donations = $info[ '_give_form_sales' ][0];
-
-	$html = '
-		<div class="give_total_forms">
-			<p>
-				We already have ' . $number_of_donations . ' donations for the ' . $post_title . ' campaign!
-			</p>
-		</div>
-	';
 	
-	return $html;
+	return '<div class="give_raised_for_forms"><p> ' . $message . '</p></div>';
 
 }
 add_shortcode( 'give_raised_for_forms', 'my_give_display_donations_for_forms');
