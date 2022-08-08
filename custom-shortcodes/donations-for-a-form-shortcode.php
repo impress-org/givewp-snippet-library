@@ -22,8 +22,9 @@ function my_give_display_donations_for_forms( $atts ) {
 	), $atts, 'give_raised_for_forms' );
 
 	$html = '';
+	$formId = $atts[ 'form_id' ];
 
-	if ( ! $atts[ 'form_id' ] ) {
+	if ( ! $formId ) {
 		$html = '
 			<div class="give_raised_for_forms">
 				<p>
@@ -35,7 +36,7 @@ function my_give_display_donations_for_forms( $atts ) {
 		return $html;
 	}
 
-	if ( get_post_type( $atts[ 'form_id' ] ) !== 'give_forms' ) {
+	if ( get_post_type( $formId ) !== 'give_forms' ) {
 		$html = '
 			<div class="give_raised_for_forms">
 				<p>
@@ -47,8 +48,8 @@ function my_give_display_donations_for_forms( $atts ) {
 		return $html;
 	}
 
-	$info = get_post_meta( $atts[ 'form_id' ] );
-	$post_title = get_the_title( $atts[ 'form_id' ] );
+	$info = get_post_meta( $formId );
+	$post_title = get_the_title( $formId );
 
 	$number_of_donations = $info[ '_give_form_sales' ][0];
 
