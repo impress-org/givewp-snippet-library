@@ -21,7 +21,6 @@ function my_give_display_donations_for_forms( $atts ) {
 		'form_id' => false,
 	), $atts, 'give_raised_for_forms' );
 
-	$html = '';
 	$formId = $atts[ 'form_id' ];
 
 	if ( ! $formId ) {
