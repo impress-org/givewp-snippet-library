@@ -5,11 +5,11 @@
  */
 
 class MyCustomColumn extends \Give\Framework\ListTable\ModelColumn {
-    public static function getId() {
+    public static function getId(): string {
         return 'my-custom-column';
     }
 
-    public function getLabel() {
+    public function getLabel(): string {
         return __('My Custom Column', 'textdomain');
     }
 
