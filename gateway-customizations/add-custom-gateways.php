@@ -8,7 +8,7 @@
  *
  */
  
- add_filter( 'give_payment_gateways', function() {
+ add_filter( 'give_payment_gateways', function( $gateways ) {
     
     $gateways['give_facebook'] = array(
         'admin_label'    => esc_attr__( 'Facebook Donations (DO NOT ENABLE)', 'give-free' ),

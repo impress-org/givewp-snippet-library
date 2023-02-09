@@ -5,7 +5,7 @@
 function my_give_focus_custom_amount() { ?>
     <script>
         jQuery(document).ready( function() {
-            jQuery('input.give_fee_mode_checkbox').prop('checked', true);
+            jQuery('input.give_fee_mode_checkbox').click();
         });
     </script>
 
