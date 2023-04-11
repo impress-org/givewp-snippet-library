@@ -4,6 +4,7 @@
  *  To style them, use this PHP snippet to add a custom stylesheet that styles the form or the donor dashboard.
  *  
  *  Make sure you create the givewp-iframes-styles.css file with the CSS styles you'll use.
+ *  IF you are using a child theme, please use get_stylesheet_directory_uri() in place of get_template_directory_uri()
  */
 
 
