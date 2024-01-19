@@ -3,6 +3,8 @@
  * Customize the Donor Dashboard CSS
  *
  * Add the following CSS to your favorite snippet plugin or to your theme's functions.php file. The CSS provided changes the colors of the Donor Dashboard to black and white.
+ *
+ * Note: This can be hooked in with either `wp_head` or `wp_footer`.
  */
 function gwp_my_inject_css_into_iframe() {
 	?>
