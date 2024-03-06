@@ -1,3 +1,4 @@
+<?php
 //This function adds the WeGlog Script to the entire site.
 //It's based on WeGlot's Javascript implementation
 //https://developers.weglot.com/javascript/javascript
